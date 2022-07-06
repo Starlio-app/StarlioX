@@ -1,11 +1,15 @@
 ## Инструкция
 1. Скачайте все необходимые модули
 
-`pip install -r requirements.txt`
+```
+pip install -r requirements.txt
+```
 
-2. Запустите
+2. Запустите main.py
 
-`python main.py`
+```
+python main.py
+```
 
 
 ## Участники проекта ✨
