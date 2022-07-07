@@ -41,4 +41,3 @@ if __name__ == "__main__":
     schedule.every(1).days.do(Nasa().start)
     while True:
         schedule.run_pending()
-
