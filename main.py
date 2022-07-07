@@ -1,15 +1,12 @@
 from bs4 import BeautifulSoup
-from pyqadmin import admin
+from elevate import elevate
 import requests
-
 import ctypes
 import os
 import urllib
 import schedule
 import winreg as reg
 import getpass
-
-
 
 
 class Nasa:
@@ -21,7 +18,6 @@ class Nasa:
         self.photoName = "everydayphotonasa.jpg"
 
     @staticmethod
-    @admin
     def autorun():
         path = os.path.dirname(os.path.realpath(__file__))
         address = os.path.join(path, "main.py")
@@ -37,7 +33,6 @@ class Nasa:
         lnk = str
         for link in soup.select("img"):
             lnk = link["src"]
-            print(f"Скачиваю картинку — {self.url + lnk}")
 
         img = urllib.request.urlopen(self.url + lnk).read()
         out = open(self.photoName, "wb")
@@ -49,12 +44,15 @@ class Nasa:
         ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
 
     def start(self):
-        self.autorun()
+        if not ctypes.windll.shell32.IsUserAnAdmin() != 0:
+            elevate(show_console=False, graphical=False)
         self.download_photo()
         self.set_wallpaper()
 
 
 if __name__ == "__main__":
-    schedule.every(1).days.do(Nasa().start)
+    nasa = Nasa()
+    nasa.start()
+    schedule.every(3).seconds.do(nasa.start)
     while True:
         schedule.run_pending()
