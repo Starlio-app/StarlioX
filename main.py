@@ -26,6 +26,7 @@ class Nasa:
         key = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, key_value, 0, reg.KEY_ALL_ACCESS)
         reg.SetValueEx(key, user, 0, reg.REG_SZ, address)
         reg.CloseKey(key)
+        print("Программа добавлена в автозапуск")
 
     def download_photo(self):
         full_page = requests.get(self.url, headers=self.headers)
@@ -33,6 +34,7 @@ class Nasa:
         lnk = str
         for link in soup.select("img"):
             lnk = link["src"]
+            print(f"Сохарняю картинку — {self.url + lnk}")
 
         img = urllib.request.urlopen(self.url + lnk).read()
         out = open(self.photoName, "wb")
@@ -41,18 +43,22 @@ class Nasa:
 
     def set_wallpaper(self):
         path = os.path.abspath(self.photoName)
+        print("Установлено фоновое изображение")
         ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
 
     def start(self):
-        if not ctypes.windll.shell32.IsUserAnAdmin() != 0:
-            elevate(show_console=False, graphical=False)
         self.download_photo()
         self.set_wallpaper()
+        print("Можно закрывать программу")
+        if ctypes.windll.shell32.IsUserAnAdmin() != 0:
+            elevate(show_console=False, graphical=False)
+            self.autorun()
+            print("Программа добавлена в автозапуск, можете закрывать программу")
 
 
 if __name__ == "__main__":
     nasa = Nasa()
     nasa.start()
-    schedule.every(3).seconds.do(nasa.start)
+    schedule.every(1).day.do(nasa.start)
     while True:
         schedule.run_pending()
