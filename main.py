@@ -20,7 +20,7 @@ class Nasa:
     @staticmethod
     def autorun():
         path = os.path.dirname(os.path.realpath(__file__))
-        address = os.path.join(path, "main.py")
+        address = os.path.join(path, "main.exe")
         key_value = "Software/Microsoft/Windows/CurrentVersion/Run"
         user = getpass.getuser()
         key = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, key_value, 0, reg.KEY_ALL_ACCESS)
@@ -29,17 +29,21 @@ class Nasa:
         print("Программа добавлена в автозапуск")
 
     def download_photo(self):
-        full_page = requests.get(self.url, headers=self.headers)
-        soup = BeautifulSoup(full_page.content, 'html.parser')
-        lnk = str
-        for link in soup.select("img"):
-            lnk = link["src"]
-            print(f"Сохарняю картинку — {self.url + lnk}")
+        try:
+            full_page = requests.get(self.url, headers=self.headers)
+            soup = BeautifulSoup(full_page.content, 'html.parser')
+            lnk = str
+            for link in soup.select("img"):
+                lnk = link["src"]
+                print(f"Сохарняю картинку — {self.url + lnk}")
 
-        img = urllib.request.urlopen(self.url + lnk).read()
-        out = open(self.photoName, "wb")
-        out.write(img)
-        out.close()
+            img = urllib.request.urlopen(self.url + lnk).read()
+            out = open(self.photoName, "wb")
+            out.write(img)
+            out.close()
+            self.set_wallpaper()
+        except requests.exceptions.ConnectionError:
+            return print("Нет подключения к интернету")
 
     def set_wallpaper(self):
         path = os.path.abspath(self.photoName)
@@ -48,7 +52,6 @@ class Nasa:
 
     def start(self):
         self.download_photo()
-        self.set_wallpaper()
         print("Можно закрывать программу")
         if ctypes.windll.shell32.IsUserAnAdmin() != 0:
             elevate(show_console=False, graphical=False)
