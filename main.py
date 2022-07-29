@@ -31,10 +31,8 @@ import winreg as reg
 import getpass
 import sys
 
-from config import Config
 
-
-class Nasa(Config):
+class Nasa:
     def __init__(self):
         self.url = "https://apod.nasa.gov/apod/"
         self.headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_3) '
