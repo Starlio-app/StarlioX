@@ -61,8 +61,8 @@ class Nasa(Config):
         if self.state is False:
             print("Автозапуск включен.")
             path = os.path.dirname(os.path.realpath(__file__))
-            address = os.path.join(path, "main.exe")
-            key_value = "Software/Microsoft/Windows/CurrentVersion/Run"
+            address = os.path.join(path, "start.bat")
+            key_value = "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
             user = getpass.getuser()
             key = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, key_value, 0, reg.KEY_ALL_ACCESS)
             reg.SetValueEx(key, user, 0, reg.REG_SZ, address)
@@ -79,7 +79,7 @@ class Nasa(Config):
                                     icon_path=self.resource_path("nasa.ico"))
         else:
             print("Программа удалена из автозапуска.")
-            key_value = "Software/Microsoft/Windows/CurrentVersion/Run"
+            key_value = "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
             user = getpass.getuser()
             key = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, key_value, 0, reg.KEY_ALL_ACCESS)
             reg.DeleteValue(key, user)
