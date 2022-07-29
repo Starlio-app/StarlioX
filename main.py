@@ -41,67 +41,15 @@ class Nasa(Config):
                                       'AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.149 Safari/537.36'}
         self.photoName = "everydayphotonasa.jpg"
         self.toaster = ToastNotifier()
-        self.state = json.loads(
-                                Config.get_setting(self,
-                                                   path="config.ini",
-                                                   section="Settings",
-                                                   setting="autorun")
-                                .lower())
 
     def resource_path(self, relative_path):
         base_path = getattr(sys, '_MEIPASS', os.path.dirname(os.path.abspath(__file__)))
         return os.path.join(base_path, relative_path)
 
-    def autorun(self):
-        self.state = not MenuItem.checked
-
-        if not ctypes.windll.shell32.IsUserAnAdmin() != 0:
-            elevate(show_console=False)
-
-        if self.state is False:
-            print("Автозапуск включен.")
-            path = os.path.dirname(os.path.realpath(__file__))
-            address = os.path.join(path, "start.bat")
-            key_value = "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
-            user = getpass.getuser()
-            key = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, key_value, 0, reg.KEY_ALL_ACCESS)
-            reg.SetValueEx(key, user, 0, reg.REG_SZ, address)
-            reg.CloseKey(key)
-            Config.update_setting(self,
-                                  path="config.ini",
-                                  section="Settings",
-                                  setting="autorun",
-                                  value="True")
-
-            self.toaster.show_toast("EveryDayPhotoNasa",
-                                    "Программа добавлена в автозапуск.",
-                                    duration=3,
-                                    icon_path=self.resource_path("nasa.ico"))
-        else:
-            print("Программа удалена из автозапуска.")
-            key_value = "SOFTWARE\Microsoft\Windows\CurrentVersion\Run"
-            user = getpass.getuser()
-            key = reg.OpenKey(reg.HKEY_LOCAL_MACHINE, key_value, 0, reg.KEY_ALL_ACCESS)
-            reg.DeleteValue(key, user)
-            reg.CloseKey(key)
-            Config.update_setting(self,
-                                  path="config.ini",
-                                  section="Settings",
-                                  setting="autorun",
-                                  value="False")
-
-            self.toaster.show_toast("EveryDayPhotoNasa",
-                                    "Программа удалена из автозапуска.",
-                                    duration=3,
-                                    icon_path=self.resource_path("nasa.ico"))
-
     def tray(self):
         tray = Icon("EveryDayPhotoNasa", title="EveryDayPhotoNasa",
                     icon=Image.open(self.resource_path("nasa.ico")),
                     menu=Menu(
-                        MenuItem("Автозапуск",
-                                 self.autorun,
-                                 checked=lambda item: self.state),
                         MenuItem("Выход",
                                  self.tray_close),
                     ))
@@ -131,7 +79,6 @@ class Nasa(Config):
                                            icon_path=self.resource_path("nasa.ico"))
 
     def set_wallpaper(self):
-        print(self.state)
         path = os.path.abspath(self.photoName)
         ctypes.windll.user32.SystemParametersInfoW(20, 0, path, 0)
         self.toaster.show_toast("EveryDayPhotoNasa",
