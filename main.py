@@ -19,9 +19,7 @@ from bs4 import BeautifulSoup
 from win10toast import ToastNotifier
 from pystray import MenuItem, Menu, Icon
 from PIL import Image
-from elevate import elevate
 
-import json
 import requests
 import ctypes
 import os
