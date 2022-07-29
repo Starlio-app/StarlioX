@@ -27,8 +27,6 @@ import ctypes
 import os
 import urllib
 import schedule
-import winreg as reg
-import getpass
 import sys
 
 
