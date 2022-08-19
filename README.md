@@ -1,14 +1,7 @@
-### ⚠️Support for Windows 10/11 only, but now development is underway for Linux, Debian and Ubuntu
+Q: What does the program do?
 
-## Instruction
-1. Install the necessary modules
+A: The program takes a picture from the [website](https://apod.nasa.gov/apod/) every day 
+and sets it as the background for your screen.
+Unfortunately, there is no autorun addition due to technical errors.
 
-```shell
-$ pip install -r requirements.txt
-```
-
-2. Run the application
-
-```shell
-$ python main.py
-```
+**[FEAT]** Currently, development is underway on a port to the Debian distribution
