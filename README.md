@@ -11,7 +11,7 @@ Unfortunately, the addition of autorun is missing due to technical errors.
 | OS      	| Status      	| Download link                                                                                	|
 |---------	|-------------	|----------------------------------------------------------------------------------------------	|
 | Windows 	| Available   	| [Download](https://github.com/Redume/EveryNasa/releases/download/v1.5/EveryDayPhotoNasa.exe) 	|
-| Linux   	| Dev         	|                                                                                              	|
+| Debian  	| Dev         	|                                                                                              	|
 | Andorid 	| Dev         	| [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)            	|
 | MacOS   	| Unavailable 	|                                                                                              	|
 | iOS     	| Unavailable 	|                                                                                              	|
