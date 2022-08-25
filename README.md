@@ -4,14 +4,14 @@ The program takes a picture from the NASA [website](https://apod.nasa.gov/apod) 
 and sets it as a background for your workspace. 
 Unfortunately, the addition of autorun is missing due to technical errors.
 
-**[FEAT]** Currently, development is underway on a port to the Debian distribution
-
 **[Andorid]** Android app at the publishing stage
 
-| OS      	| Status      	| Download link                                                                                	|
-|---------	|-------------	|----------------------------------------------------------------------------------------------	|
-| Windows 	| Available   	| [Download](https://github.com/Redume/EveryNasa/releases/download/v1.5/EveryDayPhotoNasa.exe) 	|
-| Debian  	| Dev         	|                                                                                              	|
-| Andorid 	| Dev         	| [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)            	|
-| MacOS   	| Unavailable 	|                                                                                              	|
-| iOS     	| Unavailable 	|                                                                                              	|
+#### Read it [README.md](https://github.com/Redume/EveryNasa/blob/main/src/linux/README.md) in order for the application to work correctly on Debian
+
+| OS      	| Status      	| Download link                                                                        	|
+|---------	|-------------	|--------------------------------------------------------------------------------------	|
+| Windows 	| Available   	| [Download](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa.exe) 	|
+| Debian  	| Available   	| [Download](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa)     	|
+| Andorid 	| Dev         	| [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)    	|
+| MacOS   	| Unavailable 	|                                                                                      	|
+| iOS     	| Unavailable 	|                                                                                      	|
