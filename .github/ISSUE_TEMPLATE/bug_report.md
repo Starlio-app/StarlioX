@@ -26,6 +26,7 @@ If applicable, add screenshots to help explain your problem.
 **Desktop (please complete the following information):**
  - OS: [e.g. iOS]
  - Version [e.g. 22]
+ - Graphical shell [e.g. GNOME]
 
 **Smartphone (please complete the following information):**
  - Device: [e.g. iPhone6]
