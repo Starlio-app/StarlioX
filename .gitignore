@@ -1,11 +1,13 @@
 .idea
 /output/*
-
-/src/windows/everyNASA.jpg
-/src/linux/everyNASA.jpg
 /everyNASA.jpg
+
+/src/linux/everyNASA.jpg
 /src/linux/compile.sh
 
+/src/windows/everyNASA.jpg
 /src/windows/output/*
 /src/windows/version.py
+/src/windows/version.txt
+
 /src/functions/config.ini
