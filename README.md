@@ -5,10 +5,6 @@
 - [Debian](#linux)
 
 ---
-## **Feature**
-- Rewrite, if possible, into the GoLang programming language
-- Make gui
-- Make autorun and other settings
 
 The program takes a picture from the NASA [website](https://apod.nasa.gov/apod) every day 
 and sets it as a background for your workspace. 
