@@ -1,7 +1,7 @@
 ---
 name: Questions
 about: Question about the program or something else
-title: "[Q]"
+title: Questions
 labels: question
 assignees: ''
 
