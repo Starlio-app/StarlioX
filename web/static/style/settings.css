@@ -1,0 +1,30 @@
+#everynasa-logo {
+    user-drag: none;
+    -webkit-user-drag: none;
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+}
+
+#title {
+    margin-top: 0.6em;
+    margin-left: 0.5em;
+}
+
+.title {
+    margin-top: 2.3em;
+}
+
+.desc {
+    margin-top: -0.7em;
+}
+
+p, .form-check {
+    margin-left: -18em;
+    margin-top: -0.8em;
+}
+
+#update-desc {
+    margin-top: -0.8rem;
+}
