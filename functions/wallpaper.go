@@ -22,7 +22,7 @@ func GetWallpaper() string {
 		panic(marshalErr)
 	}
 
-	type Wallpaper struct {
+	type WallpaperStruct struct {
 		Hdurl      string `json:"hdurl"`
 		Url        string `json:"url"`
 		Media_type string `json:"media_type"`
@@ -39,20 +39,19 @@ func GetWallpaper() string {
 		panic(StringErr)
 	}
 
-	var wallpaper Wallpaper
-	jsonErr := json.Unmarshal([]byte(body), &wallpaper)
+	var Wallpaper WallpaperStruct
+	jsonErr := json.Unmarshal([]byte(body), &Wallpaper)
 
 	if jsonErr != nil {
 		panic(jsonErr)
 	}
 
-	if wallpaper.Media_type == "video" {
-		wallpaper.Url = wallpaper.Url[30 : len(wallpaper.Url)-6]
-
-		return "https://img.youtube.com/vi/" + wallpaper.Url + "/0.jpg"
+	if Wallpaper.Media_type == "video" {
+		Wallpaper.Url = Wallpaper.Url[30 : len(Wallpaper.Url)-6]
+		return "https://img.youtube.com/vi/" + Wallpaper.Url + "/0.jpg"
 	}
 
-	return wallpaper.Hdurl
+	return Wallpaper.Hdurl
 }
 
 func SetWallpaper() {
