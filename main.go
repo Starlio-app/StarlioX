@@ -35,6 +35,7 @@ func main() {
 	router.HandleFunc("/api/get/settings", controllers.SettingsGet).Methods("GET")
 	router.HandleFunc("/api/get/version", controllers.Version).Methods("GET")
 	router.HandleFunc("/api/update/settings", controllers.SettingsUpdate).Methods("POST")
+	router.HandleFunc("/api/update/wallpaper", controllers.WallpaperUpdate).Methods("POST")
 
 	go func() {
 		err := http.ListenAndServe(":8080", router)
