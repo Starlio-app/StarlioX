@@ -1,37 +1,21 @@
 .card {
-    border-radius: 8%;
-    width: 250px;
+    border-radius: 4%;
+    width: 350px;
     height: 200px;
     overflow: hidden;
     margin: 10px;
     background-color: #131313;
 }
 
-
-.card img {
-    width: initial;
-    height: 100%;
-}
-
-.image {
+.header-row {
+    flex-wrap: wrap;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
 }
 
-.header-row .card {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.btn, .btn:hover {
+    background-color: #131313;
+    border: 0px #131313;
 }
-
-.header-row span > .card {
-    margin: auto;
-}
-
-.header-row span img {
-    width: 30px;
-    height: auto;
-}
-
