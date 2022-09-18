@@ -19,11 +19,15 @@ var SettingsGet = func(w http.ResponseWriter, r *http.Request) {
 		panic(errQuery)
 	}
 
-	defer query.Close()
+	defer func(query *sql.Rows) {
+		err := query.Close()
+		if err != nil {
+			panic(err)
+		}
+	}(query)
 
 	var lang string
-	var autostart int
-	var autoupdate int
+	var autostart, autoupdate int
 
 	for query.Next() {
 		err := query.Scan(&lang, &autostart, &autoupdate)
