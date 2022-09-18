@@ -12,7 +12,7 @@ func Tray() {
 	systray.SetIcon(GetIcon("web/static/image/icons/everynasa.ico"))
 	systray.SetTitle("EveryNasa")
 	systray.SetTooltip("EveryNasa")
-	ui := systray.AddMenuItem("Open Ui", "Open Ui")
+	ui := systray.AddMenuItem("Open UI", "Open UI")
 	exit := systray.AddMenuItem("Quit", "Quit the whole app")
 
 	for {
