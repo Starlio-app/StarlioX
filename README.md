@@ -1,4 +1,4 @@
-<p align="center"><img src="./src/icons/EveryNASA-banner.png" alt="EveryNasa banner"></p>
+<p align="center"><img src="./web/static/image/icons/banner.png" alt="EveryNasa banner"></p>
 
 ## Solution or answers to possible problems
 - [Windows](#windows)
