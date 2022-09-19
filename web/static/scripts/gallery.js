@@ -50,13 +50,13 @@ function Wallpaper(data) {
 
                 let button = document.querySelector(".modal-footer")
                 button.innerHTML = `
-                        <button type="button" class="btn btn-primary" id="setWallpaper">Set Wallpaper</button>
-                    `
+                    <button type="button" class="btn btn-primary" id="setWallpaper">Set Wallpaper</button>
+                `
                 let setWallpaper = document.querySelector("#setWallpaper")
 
                 if(data[id-1].media_type === "image") {
                     img.innerHTML = `
-                        <img src="${data[id - 1].url}" alt="${data[id - 1].title}" class="card-img-top">
+                        <img src="${data[id - 1].url}" alt="${data[id - 1].title}" class="card-img">
                         <p>Author: <strong>${data[id - 1].copyright}</strong></p>
                         <p>Date of shooting: <strong>${data[id - 1].date}</strong></p>
                         <p>Explanation: <strong>${data[id - 1].explanation}</strong></p>
@@ -95,8 +95,6 @@ function Wallpaper(data) {
                     `
 
                     setWallpaper.addEventListener("click", function () {
-                        console.log(`https://img.youtube.com/vi/${data[id - 1].url.slice(30,41)}/maxresdefault.jpg`);
-
                         $.ajax({
                             url: `http://localhost:8080/api/update/wallpaper`,
                             type: "POST",
