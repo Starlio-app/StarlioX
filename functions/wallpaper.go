@@ -2,6 +2,7 @@ package functions
 
 import (
 	"encoding/json"
+	"fmt"
 	"github.com/jasonlvhit/gocron"
 	"github.com/reujab/wallpaper"
 	"github.com/rodkranz/fetch"
@@ -61,12 +62,43 @@ func SetWallpaper() {
 	}
 }
 
+func x() {
+	fmt.Println("F")
+}
+
 func StartWallpaper() {
-	SetWallpaper()
-	times := time.Now()
-	t := time.Date(times.Year(), times.Month(), times.Day(), 4, 50, times.Second(), times.Nanosecond(), time.UTC)
-	err := gocron.Every(1).Day().From(&t).Do(SetWallpaper)
-	if err != nil {
-		panic(err)
+	type Autostart struct {
+		Autochangewallpaper int `json:"autochangewallpaper"`
+	}
+
+	client := fetch.NewDefault()
+	res, getErr := client.Get("http://localhost:8080/api/get/settings", nil)
+	if getErr != nil {
+		panic(getErr)
+	}
+
+	body, StringErr := res.ToString()
+	if StringErr != nil {
+		panic(StringErr)
+	}
+
+	var AutostartSetWallpaper Autostart
+	jsonErr := json.Unmarshal([]byte(body), &AutostartSetWallpaper)
+
+	if jsonErr != nil {
+		panic(jsonErr)
+	}
+
+	if AutostartSetWallpaper.Autochangewallpaper == 1 {
+		times := time.Now()
+		t := time.Date(times.Year(), times.Month(), times.Day(), 4, 50, times.Second(), times.Nanosecond(), time.UTC)
+
+		SetWallpaper()
+
+		err := gocron.Every(1).Day().From(&t).Do(SetWallpaper)
+		if err != nil {
+			panic(err)
+		}
+		gocron.Start()
 	}
 }

@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"database/sql"
+	"github.com/Redume/EveryNasa/functions"
 	"net/http"
 
 	"github.com/Redume/EveryNasa/api/utils"
@@ -27,14 +28,14 @@ var SettingsGet = func(w http.ResponseWriter, r *http.Request) {
 	}(query)
 
 	var lang string
-	var autostart, autoupdate int
+	var autostart, autoupdate, autochangewallpaper int
 
 	for query.Next() {
-		err := query.Scan(&lang, &autostart, &autoupdate)
+		err := query.Scan(&lang, &autostart, &autoupdate, &autochangewallpaper)
 		if err != nil {
 			panic(err)
 		}
-		var data = map[string]interface{}{"lang": lang, "autostart": autostart, "autoupdate": autoupdate}
+		var data = map[string]interface{}{"lang": lang, "autostart": autostart, "autoupdate": autoupdate, "autochangewallpaper": autochangewallpaper}
 		utils.Respond(w, data)
 	}
 }
@@ -48,8 +49,9 @@ var SettingsUpdate = func(w http.ResponseWriter, r *http.Request) {
 	lang := r.FormValue("lang")
 	autostart := r.FormValue("autostart")
 	autoupdate := r.FormValue("autoupdate")
+	autochangewallpaper := r.FormValue("autochangewallpaper")
 
-	if lang == "" && autostart == "" && autoupdate == "" {
+	if lang == "" && autostart == "" && autoupdate == "" && autochangewallpaper == "" {
 		utils.Respond(w, utils.Message(false, "All fields are required"))
 		return
 	}
@@ -72,6 +74,17 @@ var SettingsUpdate = func(w http.ResponseWriter, r *http.Request) {
 		_, err := db.Exec("UPDATE settings SET autoupdate = ?", autoupdate)
 		if err != nil {
 			panic(err)
+		}
+	}
+
+	if autochangewallpaper != "" {
+		_, err := db.Exec("UPDATE settings SET autochangewallpaper = ?", autochangewallpaper)
+		if err != nil {
+			panic(err)
+		}
+
+		if autochangewallpaper == "1" {
+			go functions.StartWallpaper()
 		}
 	}
 

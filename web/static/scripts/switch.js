@@ -10,6 +10,10 @@ $.ajax({
             $("#autorunSwitch").attr("checked", "true");
             $("#autorunText").text("On");
         }
+        if(data["autochangewallpaper"] === 1) {
+            $("#autosetWallpaperSwitch").attr("checked", "true");
+            $("#autosetWallpaperText").text("On");
+        }
     }
 
 })
@@ -76,6 +80,40 @@ $("#autorunSwitch").click(function(){
                     success: function(){
                         $("#autorunSwitch").attr("checked", "true");
                         $("#autorunText").text("On");
+                    }
+                })
+            }
+        }
+    });
+})
+
+$("#autosetWallpaperSwitch").click(function(){
+    $.ajax({
+        url: "http://localhost:8080/api/get/settings",
+        type: "GET",
+        success: function(data){
+            if(data["autochangewallpaper"] === 1){
+                $.ajax({
+                    url: "http://localhost:8080/api/update/settings",
+                    type: "POST",
+                    data: {
+                        autochangewallpaper: 0
+                    },
+                    success: function(){
+                        $("#autosetWallpaperSwitch").removeAttr("checked");
+                        $("#autosetWallpaperText").text("Off");
+                    }
+                })
+            } else {
+                $.ajax({
+                    url: "http://localhost:8080/api/update/settings",
+                    type: "POST",
+                    data: {
+                        autochangewallpaper: 1
+                    },
+                    success: function(){
+                        $("#autosetWallpaperSwitch").attr("checked", "true");
+                        $("#autosetWallpaperText").text("On");
                     }
                 })
             }
