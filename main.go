@@ -1,13 +1,13 @@
 package main
 
 import (
-	"github.com/getlantern/systray"
 	"net/http"
 
 	"github.com/Redume/EveryNasa/api/controllers"
 	"github.com/Redume/EveryNasa/functions"
 	"github.com/Redume/EveryNasa/web/pages"
 
+	"github.com/getlantern/systray"
 	"github.com/gorilla/mux"
 )
 
