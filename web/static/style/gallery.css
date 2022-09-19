@@ -20,3 +20,7 @@
     object-fit: none;
     object-position: center;
 }
+
+lottie-player {
+    margin: 0 auto;
+}

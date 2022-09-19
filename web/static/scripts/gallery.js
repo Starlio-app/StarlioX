@@ -23,6 +23,7 @@ const myModal = new bootstrap.Modal('#Wallpaper', {
 myModal.show()
 
 function Wallpaper(data) {
+    $(".preloader").fadeOut(0)
     for (let i = 0; i < data.length; i++) {
         if (data[i].media_type === "image") {
             $(".header-row").append(`
@@ -60,7 +61,7 @@ function Wallpaper(data) {
                         <p>Author: <strong>${data[id - 1].copyright}</strong></p>
                         <p>Date of shooting: <strong>${data[id - 1].date}</strong></p>
                         <p>Explanation: <strong>${data[id - 1].explanation}</strong></p>
-                    `
+                    `.replace("undefined", "Unknown")
                     title.innerHTML = `
                         <h5 class="modal-title">${data[id - 1].title}</h5>
                     `
@@ -89,7 +90,7 @@ function Wallpaper(data) {
                         <p>Author: <strong>${data[id - 1].copyright}</strong></p>
                         <p>Date of shooting: <strong>${data[id - 1].date}</strong></p>
                         <p>Explanation: <strong>${data[id - 1].explanation}</strong></p>
-                    `
+                    `.replace("undefined", "Unknown")
                     title.innerHTML = `
                         <h5 class="modal-title">${data[id].title}</h5>
                     `
