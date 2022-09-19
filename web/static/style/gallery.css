@@ -1,6 +1,7 @@
 .card {
-    border-radius: 4%;
-    width: 350px;
+    border-radius: 2%;
+    min-width: 350px;
+    max-width: 400px;
     height: 200px;
     overflow: hidden;
     margin: 10px;
@@ -15,7 +16,7 @@
     justify-content: space-around;
 }
 
-.btn, .btn:hover {
-    background-color: #131313;
-    border: 0px #131313;
+.card-img-top {
+    object-fit: none;
+    object-position: center;
 }
