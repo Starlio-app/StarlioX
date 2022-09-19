@@ -22,7 +22,8 @@ func Database() {
 			CREATE TABLE IF NOT EXISTS settings (
 				lang TEXT DEFAULT 'en',
 				autostart INTEGER DEFAULT 0,
-				autoupdate INTEGER DEFAULT 0
+				autoupdate INTEGER DEFAULT 0,
+			    autochangewallpaper INTEGER DEFAULT 0
 			);`
 		_, CreateTableErr := db.Exec(sqlTable)
 		if CreateTableErr != nil {
