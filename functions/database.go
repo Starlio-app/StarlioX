@@ -20,9 +20,7 @@ func Database() {
 	if exists == false {
 		sqlTable := `
 			CREATE TABLE IF NOT EXISTS settings (
-				lang TEXT DEFAULT 'en',
 				autostart INTEGER DEFAULT 0,
-				autoupdate INTEGER DEFAULT 0,
 			    autochangewallpaper INTEGER DEFAULT 0
 			);`
 		_, CreateTableErr := db.Exec(sqlTable)
@@ -30,12 +28,12 @@ func Database() {
 			panic(CreateTableErr)
 		}
 
-		stmt, InsertErr := db.Prepare("INSERT INTO settings(lang, autostart, autoupdate) values(?,?,?)")
+		stmt, InsertErr := db.Prepare("INSERT INTO settings(autostart, autochangewallpaper) values(?,?)")
 		if InsertErr != nil {
 			panic(InsertErr)
 		}
 
-		_, ExecErr := stmt.Exec("en", 0, 0)
+		_, ExecErr := stmt.Exec(0, 0)
 		if ExecErr != nil {
 			panic(ExecErr)
 		}

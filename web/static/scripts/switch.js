@@ -2,10 +2,6 @@ $.ajax({
     url: "http://localhost:8080/api/get/settings",
     type: "GET",
     success: function(data){
-        if(data["autoupdate"] === 1){
-            $("#updateSwitch").attr("checked", "true");
-            $("#updateText").text("On");
-        }
         if(data["autostart"] === 1) {
             $("#autorunSwitch").attr("checked", "true");
             $("#autorunText").text("On");
@@ -17,41 +13,6 @@ $.ajax({
     }
 
 })
-
-$("#updateSwitch").click(function(){
-    $.ajax({
-        url: "http://localhost:8080/api/get/settings",
-        type: "GET",
-        success: function(data){
-            if(data["autoupdate"] === 1){
-                $.ajax({
-                    url: "http://localhost:8080/api/update/settings",
-                    type: "POST",
-                    data: {
-                        autoupdate: 0
-                    },
-                    success: function(){
-                        $("#updateSwitch").removeAttr("checked");
-                        $("#updateText").text("Off");
-                    }
-                })
-            } else {
-                $.ajax({
-                    url: "http://localhost:8080/api/update/settings",
-                    type: "POST",
-                    data: {
-                        autoupdate: 1
-                    },
-                    success: function(){
-                        $("#updateSwitch").attr("checked", "true");
-                        $("#updateText").text("On");
-                    }
-                })
-            }
-        }
-    });
-})
-
 
 $("#autorunSwitch").click(function(){
     $.ajax({
@@ -66,8 +27,20 @@ $("#autorunSwitch").click(function(){
                         autostart: 0
                     },
                     success: function(){
-                        $("#autorunSwitch").removeAttr("checked");
-                        $("#autorunText").text("Off");
+                        $.ajax({
+                            url: "http://localhost:8080/api/update/del/startapp",
+                            type: "POST",
+                            success: function(data){
+                                $(".toast-body").text(data.message);
+                                let toastLiveExample = document.getElementById('liveToast')
+                                let toast = new bootstrap.Toast(toastLiveExample)
+                                toast.show()
+                                if(data.status) {
+                                    $("#autorunSwitch").removeAttr("checked");
+                                    $("#autorunText").text("Off");
+                                }
+                            }
+                        })
                     }
                 })
             } else {
@@ -78,8 +51,20 @@ $("#autorunSwitch").click(function(){
                         autostart: 1
                     },
                     success: function(){
-                        $("#autorunSwitch").attr("checked", "true");
-                        $("#autorunText").text("On");
+                        $.ajax({
+                            url: "http://localhost:8080/api/update/add/startapp",
+                            type: "POST",
+                            success: function(data){
+                                $(".toast-body").text(data.message);
+                                let toastLiveExample = document.getElementById('liveToast')
+                                let toast = new bootstrap.Toast(toastLiveExample)
+                                toast.show()
+                                if(data.status) {
+                                    $("#autorunSwitch").attr("checked", "true");
+                                    $("#autorunText").text("On");
+                                }
+                            }
+                        })
                     }
                 })
             }
