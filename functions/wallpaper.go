@@ -2,7 +2,6 @@ package functions
 
 import (
 	"encoding/json"
-	"fmt"
 	"github.com/jasonlvhit/gocron"
 	"github.com/reujab/wallpaper"
 	"github.com/rodkranz/fetch"
@@ -60,10 +59,6 @@ func SetWallpaper() {
 	if err != nil {
 		panic(err)
 	}
-}
-
-func x() {
-	fmt.Println("F")
 }
 
 func StartWallpaper() {
