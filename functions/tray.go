@@ -9,7 +9,7 @@ import (
 )
 
 func Tray() {
-	systray.SetIcon(GetIcon("web/static/image/icons/everynasa.ico"))
+	systray.SetIcon(GetIcon("web/static/image/icons/icon.ico"))
 	systray.SetTitle("EveryNasa")
 	systray.SetTooltip("EveryNasa")
 	ui := systray.AddMenuItem("Open UI", "Open UI")

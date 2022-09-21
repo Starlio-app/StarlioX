@@ -47,7 +47,7 @@ function Wallpaper(data) {
             if (event.target.tagName === "IMG") {
                 let id = event.target.getAttribute("idi")
                 let img = document.querySelector(".modal-body")
-                let title = document.querySelector(".modal-title")
+                let title = document.querySelector(".w-modal-title")
 
                 let button = document.querySelector(".modal-footer")
                 button.innerHTML = `
