@@ -26,7 +26,7 @@ func main() {
 	router.Use(func(next http.Handler) http.Handler {
 		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 			w.Header().Set("Access-Control-Allow-Origin", "*")
-			w.Header().Set("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+			w.Header().Set("Access-Control-Allow-Methods", "POST, GET")
 			w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 			next.ServeHTTP(w, r)
 		})
@@ -36,16 +36,19 @@ func main() {
 	router.HandleFunc("/api/get/version", controllers.Version).Methods("GET")
 	router.HandleFunc("/api/update/settings", controllers.SettingsUpdate).Methods("POST")
 	router.HandleFunc("/api/update/wallpaper", controllers.WallpaperUpdate).Methods("POST")
+	router.HandleFunc("/api/update/add/startapp", controllers.AddStartApp).Methods("POST")
+	router.HandleFunc("/api/update/del/startapp", controllers.RemoveStartApp).Methods("POST")
 
 	go func() {
-		err := http.ListenAndServe(":8080", router)
+		err := http.ListenAndServe(":4662", nil)
 		if err != nil {
 			panic(err)
 		}
 	}()
 
-	err := http.ListenAndServe(":4662", nil)
+	err := http.ListenAndServe(":8080", router)
 	if err != nil {
 		panic(err)
 	}
+
 }
