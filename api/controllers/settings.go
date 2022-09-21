@@ -27,15 +27,14 @@ var SettingsGet = func(w http.ResponseWriter, r *http.Request) {
 		}
 	}(query)
 
-	var lang string
-	var autostart, autoupdate, autochangewallpaper int
+	var autostart, autochangewallpaper int
 
 	for query.Next() {
-		err := query.Scan(&lang, &autostart, &autoupdate, &autochangewallpaper)
+		err := query.Scan(&autostart, &autochangewallpaper)
 		if err != nil {
 			panic(err)
 		}
-		var data = map[string]interface{}{"lang": lang, "autostart": autostart, "autoupdate": autoupdate, "autochangewallpaper": autochangewallpaper}
+		var data = map[string]interface{}{"autostart": autostart, "autochangewallpaper": autochangewallpaper}
 		utils.Respond(w, data)
 	}
 }
@@ -46,32 +45,16 @@ var SettingsUpdate = func(w http.ResponseWriter, r *http.Request) {
 		panic(errOpen)
 	}
 
-	lang := r.FormValue("lang")
 	autostart := r.FormValue("autostart")
-	autoupdate := r.FormValue("autoupdate")
 	autochangewallpaper := r.FormValue("autochangewallpaper")
 
-	if lang == "" && autostart == "" && autoupdate == "" && autochangewallpaper == "" {
+	if autostart == "" && autochangewallpaper == "" {
 		utils.Respond(w, utils.Message(false, "All fields are required"))
 		return
 	}
 
-	if lang != "" {
-		_, err := db.Exec("UPDATE settings SET lang = ?", lang)
-		if err != nil {
-			panic(err)
-		}
-	}
-
 	if autostart != "" {
 		_, err := db.Exec("UPDATE settings SET autostart = ?", autostart)
-		if err != nil {
-			panic(err)
-		}
-	}
-
-	if autoupdate != "" {
-		_, err := db.Exec("UPDATE settings SET autoupdate = ?", autoupdate)
 		if err != nil {
 			panic(err)
 		}
