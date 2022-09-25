@@ -2,10 +2,11 @@ package functions
 
 import (
 	"fmt"
+	"os"
+
 	"github.com/getlantern/systray"
 	"github.com/shirou/gopsutil/v3/process"
 	"github.com/skratchdot/open-golang/open"
-	"os"
 )
 
 func Tray() {
@@ -20,7 +21,7 @@ func Tray() {
 		case <-ui.ClickedCh:
 			err := open.Run("http://localhost:4662")
 			if err != nil {
-				panic(err)
+				Logger(err.Error())
 			}
 		case <-exit.ClickedCh:
 			Quit()
@@ -31,7 +32,7 @@ func Tray() {
 func Quit() {
 	err := KillProcess("EveryNasa.exe")
 	if err != nil {
-		panic(err)
+		Logger(err.Error())
 	}
 
 	systray.Quit()
@@ -40,13 +41,13 @@ func Quit() {
 func KillProcess(name string) error {
 	processes, err := process.Processes()
 	if err != nil {
-		panic(err)
+		Logger(err.Error())
 	}
 
 	for _, p := range processes {
-		n, ProccErr := p.Name()
-		if ProccErr != nil {
-			panic(ProccErr)
+		n, err := p.Name()
+		if err != nil {
+			Logger(err.Error())
 		}
 
 		if n == name {
@@ -59,7 +60,7 @@ func KillProcess(name string) error {
 func GetIcon(s string) []byte {
 	b, err := os.ReadFile(s)
 	if err != nil {
-		fmt.Print(err)
+		Logger(err.Error())
 	}
 	return b
 }

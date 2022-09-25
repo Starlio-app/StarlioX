@@ -2,68 +2,61 @@ package controllers
 
 import (
 	"database/sql"
-	"github.com/Redume/EveryNasa/functions"
 	"net/http"
 
 	"github.com/Redume/EveryNasa/api/utils"
+	"github.com/Redume/EveryNasa/functions"
 	_ "github.com/mattn/go-sqlite3"
 )
 
 var SettingsGet = func(w http.ResponseWriter, r *http.Request) {
-	db, errOpen := sql.Open("sqlite3", "EveryNasa.db")
-	if errOpen != nil {
-		panic(errOpen)
+	db, err := sql.Open("sqlite3", "EveryNasa.db")
+	if err != nil {
+		functions.Logger(err.Error())
 	}
 
-	query, errQuery := db.Query("SELECT * FROM settings")
-	if errQuery != nil {
-		panic(errQuery)
+	query, err := db.Query("SELECT * FROM settings")
+	if err != nil {
+		functions.Logger(err.Error())
 	}
 
 	defer func(query *sql.Rows) {
 		err := query.Close()
 		if err != nil {
-			panic(err)
+			functions.Logger(err.Error())
 		}
 	}(query)
 
-	var autostart, autochangewallpaper int
+	var startup, autochangewallpaper int
 
 	for query.Next() {
-		err := query.Scan(&autostart, &autochangewallpaper)
+		err := query.Scan(&startup, &autochangewallpaper)
 		if err != nil {
-			panic(err)
+			functions.Logger(err.Error())
 		}
-		var data = map[string]interface{}{"autostart": autostart, "autochangewallpaper": autochangewallpaper}
+		var data = map[string]interface{}{"startup": startup, "autochangewallpaper": autochangewallpaper}
 		utils.Respond(w, data)
 	}
 }
 
 var SettingsUpdate = func(w http.ResponseWriter, r *http.Request) {
-	db, errOpen := sql.Open("sqlite3", "EveryNasa.db")
-	if errOpen != nil {
-		panic(errOpen)
+	db, err := sql.Open("sqlite3", "EveryNasa.db")
+	if err != nil {
+		functions.Logger(err.Error())
 	}
 
-	autostart := r.FormValue("autostart")
 	autochangewallpaper := r.FormValue("autochangewallpaper")
+	startup := r.FormValue("startup")
 
-	if autostart == "" && autochangewallpaper == "" {
-		utils.Respond(w, utils.Message(false, "All fields are required"))
+	if startup == "" && autochangewallpaper == "" {
+		utils.Respond(w, utils.Message(false, "All fields are required."))
 		return
-	}
-
-	if autostart != "" {
-		_, err := db.Exec("UPDATE settings SET autostart = ?", autostart)
-		if err != nil {
-			panic(err)
-		}
 	}
 
 	if autochangewallpaper != "" {
 		_, err := db.Exec("UPDATE settings SET autochangewallpaper = ?", autochangewallpaper)
 		if err != nil {
-			panic(err)
+			functions.Logger(err.Error())
 		}
 
 		if autochangewallpaper == "1" {
@@ -71,5 +64,12 @@ var SettingsUpdate = func(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	utils.Respond(w, utils.Message(true, "Settings updated"))
+	if startup != "" {
+		_, err := db.Exec("UPDATE settings SET startup = ?", startup)
+		if err != nil {
+			functions.Logger(err.Error())
+		}
+	}
+
+	utils.Respond(w, utils.Message(true, "The settings have been applied successfully."))
 }

@@ -2,6 +2,7 @@ package utils
 
 import (
 	"encoding/json"
+	"github.com/Redume/EveryNasa/functions"
 	"net/http"
 )
 
@@ -13,6 +14,6 @@ func Respond(w http.ResponseWriter, data map[string]interface{}) {
 	w.Header().Add("Content-Type", "application/json")
 	err := json.NewEncoder(w).Encode(data)
 	if err != nil {
-		panic(err)
+		functions.Logger(err.Error())
 	}
 }
