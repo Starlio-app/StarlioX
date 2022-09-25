@@ -2,24 +2,25 @@ package functions
 
 import (
 	"encoding/json"
+	"os"
+	"time"
+
 	"github.com/jasonlvhit/gocron"
 	"github.com/reujab/wallpaper"
 	"github.com/rodkranz/fetch"
 	"gopkg.in/yaml.v2"
-	"os"
-	"time"
 )
 
 func GetWallpaper() string {
-	file, readErr := os.ReadFile("config.yaml")
-	if readErr != nil {
-		panic(readErr)
+	file, err := os.ReadFile("config.yaml")
+	if err != nil {
+		Logger(err.Error())
 	}
 	data := make(map[interface{}]interface{})
 
-	marshalErr := yaml.Unmarshal(file, &data)
-	if marshalErr != nil {
-		panic(marshalErr)
+	err = yaml.Unmarshal(file, &data)
+	if err != nil {
+		Logger(err.Error())
 	}
 
 	type WallpaperStruct struct {
@@ -29,21 +30,20 @@ func GetWallpaper() string {
 	}
 
 	client := fetch.NewDefault()
-	res, getErr := client.Get("https://api.nasa.gov/planetary/apod?api_key="+data["apiKey"].(string), nil)
-	if getErr != nil {
-		panic(getErr)
+	res, err := client.Get("https://api.nasa.gov/planetary/apod?api_key="+data["apiKey"].(string), nil)
+	if err != nil {
+		Logger(err.Error())
 	}
 
-	body, StringErr := res.ToString()
-	if StringErr != nil {
-		panic(StringErr)
+	body, err := res.ToString()
+	if err != nil {
+		Logger(err.Error())
 	}
 
 	var Wallpaper WallpaperStruct
-	jsonErr := json.Unmarshal([]byte(body), &Wallpaper)
-
-	if jsonErr != nil {
-		panic(jsonErr)
+	err = json.Unmarshal([]byte(body), &Wallpaper)
+	if err != nil {
+		Logger(err.Error())
 	}
 
 	if Wallpaper.Media_type == "video" {
@@ -57,7 +57,7 @@ func GetWallpaper() string {
 func SetWallpaper() {
 	err := wallpaper.SetFromURL(GetWallpaper())
 	if err != nil {
-		panic(err)
+		Logger(err.Error())
 	}
 }
 
@@ -67,21 +67,20 @@ func StartWallpaper() {
 	}
 
 	client := fetch.NewDefault()
-	res, getErr := client.Get("http://localhost:8080/api/get/settings", nil)
-	if getErr != nil {
-		panic(getErr)
+	res, err := client.Get("http://localhost:8080/api/get/settings", nil)
+	if err != nil {
+		Logger(err.Error())
 	}
 
-	body, StringErr := res.ToString()
-	if StringErr != nil {
-		panic(StringErr)
+	body, err := res.ToString()
+	if err != nil {
+		Logger(err.Error())
 	}
 
 	var AutostartSetWallpaper Autostart
-	jsonErr := json.Unmarshal([]byte(body), &AutostartSetWallpaper)
-
-	if jsonErr != nil {
-		panic(jsonErr)
+	err = json.Unmarshal([]byte(body), &AutostartSetWallpaper)
+	if err != nil {
+		Logger(err.Error())
 	}
 
 	if AutostartSetWallpaper.Autochangewallpaper == 1 {
@@ -90,10 +89,11 @@ func StartWallpaper() {
 
 		SetWallpaper()
 
-		err := gocron.Every(1).Day().From(&t).Do(SetWallpaper)
+		err = gocron.Every(1).Day().From(&t).Do(SetWallpaper)
 		if err != nil {
-			panic(err)
+			Logger(err.Error())
 		}
+
 		gocron.Start()
 	}
 }
