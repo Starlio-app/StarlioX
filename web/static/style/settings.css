@@ -11,11 +11,38 @@
     margin-top: -0.7em;
 }
 
-p, .form-check {
+.settings {
+    margin-top: 2.4em;
+}
+
+.settings p, .form-check {
     margin-left: -12em;
     margin-top: -0.8em;
 }
 
+
+#update {
+    display: inline-block;
+    width: 25%;
+    height: 6.7em;
+    margin-left: 2em;
+    margin-top: 1em;
+    background-color: #2f3041;
+    border-radius: 9px;
+}
+
+#update-title, #update-desc, #update-button {
+    margin-left: 0.7em;
+}
+
 #update-desc {
-    margin-top: -0.8rem;
+    margin-top: -0.9em;
+}
+
+#update-button {
+    margin-top: -0.6em;
+}
+
+#update-title {
+    margin-top: 0.3em;
 }
