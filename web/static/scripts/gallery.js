@@ -58,9 +58,9 @@ function Wallpaper(data) {
                 if(data[id-1].media_type === "image") {
                     img.innerHTML = `
                         <img src="${data[id - 1].url}" alt="${data[id - 1].title}" class="card-img">
-                        <p>Author: <strong>${data[id - 1].copyright}</strong></p>
-                        <p>Date of shooting: <strong>${data[id - 1].date}</strong></p>
-                        <p>Explanation: <strong>${data[id - 1].explanation}</strong></p>
+                        <p><strong>Author:</strong> ${data[id - 1].copyright}</p>
+                        <p><strong>Date of publication:</strong> ${data[id - 1].date}</p>
+                        <p><strong>Explanation:</strong> ${data[id - 1].explanation}</p>
                     `.replace("undefined", "Unknown")
                     title.innerHTML = `
                         <h5 class="modal-title">${data[id - 1].title}</h5>
@@ -87,9 +87,9 @@ function Wallpaper(data) {
                 } else {
                     img.innerHTML = `
                         <iframe width="460" height="315" src="${data[id - 1].url}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-                        <p>Author: <strong>${data[id - 1].copyright}</strong></p>
-                        <p>Date of shooting: <strong>${data[id - 1].date}</strong></p>
-                        <p>Explanation: <strong>${data[id - 1].explanation}</strong></p>
+                        <p><strong>Author:</strong> ${data[id - 1].copyright}</p>
+                        <p><strong>Date of publication:</strong> ${data[id - 1].date}</p>
+                        <p><strong>Explanation:</strong> ${data[id - 1].explanation}</p>
                     `.replace("undefined", "Unknown")
                     title.innerHTML = `
                         <h5 class="modal-title">${data[id].title}</h5>
