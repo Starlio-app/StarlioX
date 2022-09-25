@@ -6,7 +6,6 @@ import (
 	"github.com/Redume/EveryNasa/api/controllers"
 	"github.com/Redume/EveryNasa/functions"
 	"github.com/Redume/EveryNasa/web/pages"
-
 	"github.com/getlantern/systray"
 	"github.com/gorilla/mux"
 )
@@ -36,19 +35,18 @@ func main() {
 	router.HandleFunc("/api/get/version", controllers.Version).Methods("GET")
 	router.HandleFunc("/api/update/settings", controllers.SettingsUpdate).Methods("POST")
 	router.HandleFunc("/api/update/wallpaper", controllers.WallpaperUpdate).Methods("POST")
-	router.HandleFunc("/api/update/add/startapp", controllers.AddStartApp).Methods("POST")
-	router.HandleFunc("/api/update/del/startapp", controllers.RemoveStartApp).Methods("POST")
+	router.HandleFunc("/api/update/set/startup", controllers.SetStartup).Methods("POST")
+	router.HandleFunc("/api/update/del/startup", controllers.RemoveStartup).Methods("POST")
 
 	go func() {
 		err := http.ListenAndServe(":4662", nil)
 		if err != nil {
-			panic(err)
+			functions.Logger(err.Error())
 		}
 	}()
 
 	err := http.ListenAndServe(":8080", router)
 	if err != nil {
-		panic(err)
+		functions.Logger(err.Error())
 	}
-
 }
