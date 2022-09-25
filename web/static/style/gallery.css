@@ -24,3 +24,7 @@
 lottie-player {
     margin: 0 auto;
 }
+
+.modal-body p {
+    font-family: 'Roboto', sans-serif;
+}
