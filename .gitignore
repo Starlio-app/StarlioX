@@ -1,6 +1,19 @@
+# Other
+
 .idea
+logger.log
 
-EveryNasa.db
-EveryNasa.db-journal
+# Database files
 
-EveryNasa.exe
+*.db
+*.db-journal
+
+# Build files
+
+*.exe
+*.msi
+*.syso
+winres/*
+wix/*
+wix.json
+
