@@ -22,7 +22,7 @@ func Database() {
 		sqlTable := `
 			CREATE TABLE IF NOT EXISTS settings (
 			    startup INTEGER DEFAULT 0,
-			    autochangewallpaper INTEGER DEFAULT 0
+			    wallpaper INTEGER DEFAULT 0
 			);`
 
 		_, err = db.Exec(sqlTable)
@@ -30,7 +30,7 @@ func Database() {
 			Logger(err.Error())
 		}
 
-		stmt, err := db.Prepare("INSERT INTO settings(startup, autochangewallpaper) values(?, ?)")
+		stmt, err := db.Prepare("INSERT INTO settings(startup, wallpaper) values(?,?)")
 		if err != nil {
 			Logger(err.Error())
 		}
