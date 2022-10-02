@@ -1,137 +1,142 @@
-$.ajax({
-    url: "http://localhost:8080/api/get/settings",
-    type: "GET",
-    success: function(data){
-        if(data["autochangewallpaper"] === 1) {
-            $("#autosetWallpaperSwitch").attr("checked", "true");
-            $("#autosetWallpaperText").text("On");
-        }
-        if(data["startup"] === 1) {
-            $("#startupSwitch").attr("checked", "true");
-            $("#startupText").text("On");
-        }
+$(document).ready(async function() {
+    const data = await getData();
+
+    const $startupSwitch = $("#settings_startupSwitch");
+    const $startupSwitchTogglerName = $("#settings_startupTogglerName");
+
+    const $wallpaperSwitch = $("#settings_autoSetWallpaperSwitch");
+    const $wallpaperSwitchTogglerName = $("#settings_autoSetWallpaperTogglerName");
+
+    console.log(data)
+
+    if(data["wallpaper"] === 1) {
+       $wallpaperSwitch.attr("checked", "true");
+       $wallpaperSwitchTogglerName.text("On");
     }
-});
+    if(data["startup"] === 1) {
+        $startupSwitch.attr("checked", "true");
+        $startupSwitchTogglerName.text("On");
+    }
 
-$("#autosetWallpaperSwitch").click(function(){
-    $.ajax({
-        url: "http://localhost:8080/api/get/settings",
-        type: "GET",
-        success: function(data){
-            if(data["autochangewallpaper"] === 1){
-                $.ajax({
-                    url: "http://localhost:8080/api/update/settings",
-                    type: "POST",
-                    data: {
-                        autochangewallpaper: 0
-                    },
-                    success: function(data){
-                        if(data.status) {
-                            $("#autosetWallpaperSwitch").removeAttr("checked");
-                            $("#autosetWallpaperText").text("Off");
+    $wallpaperSwitch.click(function() {
+        if(data["wallpaper"] === 1) {
+            $.ajax({
+                url: "http://localhost:8080/api/update/settings",
+                type: "POST",
+                data: {
+                    "wallpaper": 0
+                },
+                success: function(data) {
+                    if(data["status"]) {
+                        $wallpaperSwitchTogglerName.text("Off");
+                        $wallpaperSwitch.removeAttr("checked");
 
-                            $(".toast-body").text(data.message);
-                            let toastLiveExample = document.getElementById('liveToast');
-                            let toast = new bootstrap.Toast(toastLiveExample);
-                            toast.show();
-                        }
+                        toast(data.message);
+                    } else {
+                        toast("Failed to apply settings");
                     }
-                });
-            } else {
-                $.ajax({
-                    url: "http://localhost:8080/api/update/settings",
-                    type: "POST",
-                    data: {
-                        autochangewallpaper: 1
-                    },
-                    success: function(data){
-                        if(data.status) {
-                            $("#autosetWallpaperSwitch").attr("checked", "true");
-                            $("#autosetWallpaperText").text("On");
+                }
+            });
+        } else {
+            $.ajax({
+                url: "http://localhost:8080/api/update/settings",
+                type: "POST",
+                data: {
+                    "wallpaper": 1
+                },
+                success: function(data) {
+                    if(data["status"]) {
+                        $wallpaperSwitchTogglerName.text("On");
+                        $wallpaperSwitch.attr("checked", "true");
 
-                            $(".toast-body").text(data.message);
-                            let toastLiveExample = document.getElementById('liveToast');
-                            let toast = new bootstrap.Toast(toastLiveExample);
-                            toast.show();
-                        } else {
-                            $(".toast-body").text("Could not remove the program from autorun.");
-                            let toastLiveExample = document.getElementById('liveToast');
-                            let toast = new bootstrap.Toast(toastLiveExample);
-                            toast.show();
-                        }
+                        toast(data.message);
+                    } else {
+                        toast("Failed to apply settings");
                     }
-                });
-            }
+                }
+            });
         }
+    });
+
+    $startupSwitch.click(function() {
+        if(data["startup"] === 1) {
+            $.ajax({
+                url: "http://localhost:8080/api/update/settings",
+                type: "POST",
+                data: {
+                    "startup": 0
+                },
+                success: async function(data) {
+                    if(data["status"]) {
+                        await editStartup(0);
+
+                        $startupSwitchTogglerName.text("Off");
+                        $startupSwitch.removeAttr("checked");
+
+                        toast(data.message);
+                    } else {
+                        toast("Failed to apply settings");
+                    }
+                }
+            });
+        } else {
+            $.ajax({
+                url: "http://localhost:8080/api/update/settings",
+                type: "POST",
+                data: {
+                    "startup": 1
+                },
+                success: async function(data) {
+                    if(data["status"]) {
+                        await editStartup(1);
+
+                        $startupSwitchTogglerName.text("On");
+                        $startupSwitch.attr("checked", "true");
+
+                        toast(data.message);
+                    } else {
+                        toast("Failed to apply settings");
+                    }
+                }
+            });
+        }
+    });
+
+    $("#createLabelButton").click(function() {
+        $.ajax({
+            url: "http://localhost:8080/api/create/label",
+            type: "POST",
+            success: function (data) {
+                if (data["status"]) {
+                    toast(data.message);
+                } else {
+                    toast("Failed to create label");
+                }
+            }
+        });
     });
 });
 
-$("#startupSwitch").click(function() {
-    $.ajax({
-        url: "http://localhost:8080/api/get/settings",
-        type: "GET",
-        success: function (data) {
-            if (data["startup"] === 1) {
-                $.ajax({
-                    url: "http://localhost:8080/api/update/settings",
-                    type: "POST",
-                    data: {
-                        startup: 0
-                    },
-                    success: function () {
-                        $.ajax({
-                            url: "http://localhost:8080/api/update/del/startup",
-                            type: "POST",
-                            success: function(data){
-                                if(data.status) {
-                                    $("#startupSwitch").removeAttr("checked");
-                                    $("#startupText").text("Off");
 
-                                    $(".toast-body").text(data.message);
-                                    let toastLiveExample = document.getElementById('liveToast');
-                                    let toast = new bootstrap.Toast(toastLiveExample);
-                                    toast.show();
-                                } else {
-                                    $(".toast-body").text("Failed to apply settings.");
-                                    let toastLiveExample = document.getElementById('liveToast');
-                                    let toast = new bootstrap.Toast(toastLiveExample);
-                                    toast.show();
-                                }
-                            }
-                        });
-                    }
-                });
-            } else {
-                $.ajax({
-                    url: "http://localhost:8080/api/update/settings",
-                    type: "POST",
-                    data: {
-                        startup: 1
-                    },
-                    success: function () {
-                        $.ajax({
-                          url: "http://localhost:8080/api/update/set/startup",
-                          type: "POST",
-                          success: function(data){
-                              if(data.status) {
-                                  $("#startupSwitch").attr("checked", "true");
-                                  $("#startupText").text("On");
-
-                                  $(".toast-body").text(data.message);
-                                  let toastLiveExample = document.getElementById('liveToast');
-                                  let toast = new bootstrap.Toast(toastLiveExample);
-                                  toast.show();
-                              } else {
-                                    $(".toast-body").text("Failed to apply settings.");
-                                    let toastLiveExample = document.getElementById('liveToast');
-                                    let toast = new bootstrap.Toast(toastLiveExample);
-                                    toast.show();
-                              }
-                          }
-                        });
-                    }
-                });
-            }
-        }
+function getData() {
+    return fetch("http://localhost:8080/api/get/settings").then(response => response.json()).then(data => {
+        return data;
     });
-});
+}
+
+function toast(message) {
+    $(".toast-body").text(message);
+    let toastLiveExample = document.getElementById('liveToast');
+    let toast = new bootstrap.Toast(toastLiveExample);
+    toast.show();
+}
+
+function editStartup(i) {
+    return $.ajax({
+        url: "http://localhost:8080/api/update/startup",
+        type: "POST",
+        data: {
+            "startup": i
+        },
+    });
+}
