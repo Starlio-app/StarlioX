@@ -3,7 +3,6 @@ module github.com/Redume/EveryNasa
 go 1.19
 
 require (
-	github.com/gen2brain/beeep v0.0.0-20220909211152-5a9ec94374f6
 	github.com/getlantern/systray v1.2.1
 	github.com/go-ole/go-ole v1.2.6
 	github.com/gorilla/mux v1.8.0
@@ -11,7 +10,7 @@ require (
 	github.com/mattn/go-sqlite3 v1.14.15
 	github.com/reujab/wallpaper v0.0.0-20210630195606-5f9f655b3740
 	github.com/rodkranz/fetch v1.2.0
-	github.com/shirou/gopsutil/v3 v3.22.8
+	github.com/shirou/gopsutil/v3 v3.22.9
 	github.com/skratchdot/open-golang v0.0.0-20200116055534-eef842397966
 	gopkg.in/yaml.v2 v2.4.0
 )
@@ -24,13 +23,9 @@ require (
 	github.com/getlantern/hidden v0.0.0-20190325191715-f02dbb02be55 // indirect
 	github.com/getlantern/ops v0.0.0-20190325191751-d70cb0d6f85f // indirect
 	github.com/go-stack/stack v1.8.0 // indirect
-	github.com/go-toast/toast v0.0.0-20190211030409-01e6764cf0a4 // indirect
-	github.com/godbus/dbus/v5 v5.1.0 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
-	github.com/nu7hatch/gouuid v0.0.0-20131221200532-179d4d0c4d8d // indirect
 	github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
-	github.com/tadvi/systray v0.0.0-20190226123456-11a2b8fa57af // indirect
 	github.com/tklauser/go-sysconf v0.3.10 // indirect
 	github.com/tklauser/numcpus v0.4.0 // indirect
 	github.com/yusufpapurcu/wmi v1.2.2 // indirect
