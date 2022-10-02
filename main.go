@@ -11,15 +11,10 @@ import (
 )
 
 func main() {
+	go functions.Logger("EveryNasa started")
 	go functions.Database()
 	go systray.Run(functions.Tray, functions.Quit)
 	go functions.StartWallpaper()
-
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./web/static"))))
-
-	http.HandleFunc("/", page.GalleryHandler)
-	http.HandleFunc("/settings", page.SettingsHandler)
-	http.HandleFunc("/about", page.AboutHandler)
 
 	router := mux.NewRouter()
 	router.Use(func(next http.Handler) http.Handler {
@@ -31,12 +26,19 @@ func main() {
 		})
 	})
 
+	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./web/static"))))
+
+	http.HandleFunc("/", page.GalleryHandler)
+	http.HandleFunc("/settings", page.SettingsHandler)
+	http.HandleFunc("/about", page.AboutHandler)
+
 	router.HandleFunc("/api/get/settings", controllers.SettingsGet).Methods("GET")
 	router.HandleFunc("/api/get/version", controllers.Version).Methods("GET")
+
 	router.HandleFunc("/api/update/settings", controllers.SettingsUpdate).Methods("POST")
 	router.HandleFunc("/api/update/wallpaper", controllers.WallpaperUpdate).Methods("POST")
-	router.HandleFunc("/api/update/set/startup", controllers.SetStartup).Methods("POST")
-	router.HandleFunc("/api/update/del/startup", controllers.RemoveStartup).Methods("POST")
+	router.HandleFunc("/api/update/startup", controllers.Startup).Methods("POST")
+	router.HandleFunc("/api/create/label", controllers.CreateLabel).Methods("POST")
 
 	go func() {
 		err := http.ListenAndServe(":4662", nil)
