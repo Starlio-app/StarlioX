@@ -3,6 +3,7 @@ package functions
 import (
 	"os"
 	"runtime"
+	"strings"
 	"time"
 )
 
@@ -19,7 +20,6 @@ func Logger(text string) {
 	}
 	now := time.Now()
 
-	//what file name is it
 	_, file, _, ok := runtime.Caller(1)
 	if !ok {
 		file = "???"
@@ -30,7 +30,9 @@ func Logger(text string) {
 		Logger(err.Error())
 	}
 
-	file = file[len(dir)+1:]
+	if strings.Contains(file, dir) {
+		file = file[len(dir)+1:]
+	}
 
 	_, err = f.Write([]byte(now.Format("Mon Jan 2 15:04:05 2006") + " | " + text + " [" + file + "] " + "\n"))
 	if err != nil {
