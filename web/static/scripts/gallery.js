@@ -96,7 +96,13 @@ function wallpaper(data) {
         let title = document.querySelector(".w-modal-title");
 
         let button = document.querySelector(".modal-footer");
-        button.innerHTML = `<button type="button" class="btn btn-primary" id="setWallpaper">Set Wallpaper</button>`;
+
+        if($(`img#${id}.card-img-top`).attr("src") !== "http://localhost:4662/static/image/placeholder.png") {
+            button.innerHTML = `<button type="button" class="btn btn-primary" id="setWallpaper">Set Wallpaper</button>`;
+        } else {
+            button.innerHTML = `<button type="button" class="btn btn-primary" id="setWallpaper" disabled>Set Wallpaper</button>`;
+        }
+
         let setWallpaper = document.querySelector("#setWallpaper");
 
         ids[id]['copyright'] = ids[id]['copyright'] === undefined ? "NASA" : ids[id]['copyright'];
