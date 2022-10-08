@@ -39,11 +39,6 @@ $(document).ready(function() {
     });
 });
 
-const myModal = new bootstrap.Modal('#Wallpaper', {
-    keyboard: false
-});
-myModal.show();
-
 function wallpaper(data) {
     $(".preloader").hide();
     data = data.reverse();
@@ -51,32 +46,52 @@ function wallpaper(data) {
     for (let i = 0; i < data.length; i++, id++) {
         ids.push(data[i]);
 
-        if (ids.filter((item) => item.url === data[i].url).length > 1) {
+        if (ids.filter((item) => item['url'] === data[i]['url']).length > 1) {
             continue;
+        }
+
+        let image = new Image();
+        image.src = ids[id]['media_type'] === "video" ?
+            `https://img.youtube.com/vi/${ids[id]['url'].slice(30, 41)}/maxresdefault.jpg` :
+            ids[id]['url'];
+
+        image.onload = function() {
+            if(image.width+image.height !== 210) {
+                $(`img[data-src="${image.src}"]`).attr("src", `${image.src}`);
+            }
         }
 
         if (ids[id]['media_type'] === "image") {
             $(".header-row").append(`
                 <div class="card">
                     <a data-bs-toggle="modal" href="#WallpaperModal" role="button">
-                        <img src="${ids[id]['url']}" alt="${ids[id]['title']}" class="card-img-top" idi="${id}">
+                        <img src="${ids[id]['url']}" alt="${ids[id]['title']}" class="card-img-top" id="${id}">
                     </a>
                 </div>
         `);
         } else {
             $(".header-row").append(`
-                <div class="card">
-                    <a data-bs-toggle="modal" href="#WallpaperModal" role="button">
-                        <img src="https://img.youtube.com/vi/${ids[id]['url'].slice(30,41)}/maxresdefault.jpg" alt="${ids[id]['title']}" class="card-img-top" idi="${id}">
-                    </a>
-                </div>
-            `);
+            <div class="card">
+                <a data-bs-toggle="modal" href="#WallpaperModal" role="button">
+                    <img src="http://localhost:4662/static/image/placeholder.png" 
+                        data-src="https://img.youtube.com/vi/${ids[id]['url'].slice(30, 41)}/maxresdefault.jpg"
+                        alt="${ids[id]['title']}" 
+                        class="card-img-top" 
+                        id="${id}"> 
+                </a>
+            </div>
+        `);
         }
     }
 
+
     let button_modal = document.querySelector(".header-row");
     button_modal.addEventListener("click", function (event) {
-        let id = event.target.getAttribute("idi");
+        if (event.target === button_modal) {
+            return;
+        }
+
+        let id = event.target.getAttribute("id");
         let img = document.querySelector(".modal-body");
         let title = document.querySelector(".w-modal-title");
 
@@ -87,6 +102,7 @@ function wallpaper(data) {
         ids[id]['copyright'] = ids[id]['copyright'] === undefined ? "NASA" : ids[id]['copyright'];
 
         if (ids[id]['media_type'] === "image") {
+            title.innerHTML = `<h5 class="modal-title">${ids[id]['title']}</h5>`;
             img.innerHTML = `
                 <img src="${ids[id]['url']}" alt="${ids[id]['title']}" class="card-img">
                 <p><strong>Author:</strong> ${ids[id]['copyright']}</p>
@@ -94,27 +110,32 @@ function wallpaper(data) {
                 <p><strong>Explanation:</strong> ${ids[id]['explanation']}</p>
             `;
 
-            title.innerHTML = `<h5 class="modal-title">${ids[id]['title']}</h5>`;
             setWallpaper.addEventListener("click", function () {
                 wallpaperUpdate(ids[id]['hdurl']);
             });
         } else {
+            title.innerHTML = `<h5 class="modal-title">${ids[id]['title']}</h5>`;
             img.innerHTML = `
-                <iframe width="460" height="315" src="${ids[id]['url']}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+                <iframe width="460" 
+                height="315" 
+                src="${ids[id]['url']}" 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowFullScreen></iframe>
+                
                 <p><strong>Author:</strong> ${ids[id]['copyright']}</p>
                 <p><strong>Date of publication:</strong> ${ids[id]['date']}</p>
                 <p><strong>Explanation:</strong> ${ids[id]['explanation']}</p>
             `;
 
-            title.innerHTML = `<h5 class="modal-title">${ids[id]['title']}</h5>`;
             setWallpaper.addEventListener("click", function () {
-                wallpaperUpdate(`https://img.youtube.com/vi/${ids[id]['url'].slice(30,41)}/maxresdefault.jpg`);
+                wallpaperUpdate(`https://img.youtube.com/vi/${ids[id]['url'].slice(30, 41)}/maxresdefault.jpg`);
             });
         }
     });
 
     $(window).scroll(function () {
-        if (($(window).scrollTop() >  $(document).height() - $(window).height() - 100)) {
+        if (($(window).scrollTop() > $(document).height() - $(window).height() - 100)) {
             $(".preloader").show();
             $(window).off("scroll");
 
