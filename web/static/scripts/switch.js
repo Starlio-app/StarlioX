@@ -7,8 +7,6 @@ $(document).ready(async function() {
     const $wallpaperSwitch = $("#settings_autoSetWallpaperSwitch");
     const $wallpaperSwitchTogglerName = $("#settings_autoSetWallpaperTogglerName");
 
-    console.log(data)
-
     if(data["wallpaper"] === 1) {
        $wallpaperSwitch.attr("checked", "true");
        $wallpaperSwitchTogglerName.text("On");
