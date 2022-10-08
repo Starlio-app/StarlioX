@@ -1,8 +1,7 @@
-let prev_date = Number(new Date().toLocaleString().slice(0,2))-1;
 let today = new Date();
 let endDate = new Date();
 
-let ids = [];
+const ids = [];
 let id = 0;
 
 const apiKEY = "1gI9G84ZafKDEnrbydviGknReOGiVK9jqrQBE3et";
@@ -14,27 +13,11 @@ $(document).ready(function() {
         type: "GET",
         data: {
             api_key: apiKEY,
-            start_date: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,
-            end_date: `${new Date().toLocaleString().slice(6, 10)}-${new Date().toLocaleString().slice(3, 5)}-${new Date().toLocaleString().slice(0, 2)}`,
+            start_date: `${today.getUTCFullYear()}-${today.getUTCMonth() + 1}-${today.getUTCDate()}`,
+            end_date: `${endDate.getUTCFullYear()}-${endDate.getUTCMonth() + 1}-${endDate.getUTCDate()}`,
         },
         success: function(data) {
             wallpaper(data);
-        },
-        error: function() {
-            $.ajax({
-                url: "https://api.nasa.gov/planetary/apod",
-                data: {
-                    api_key: apiKEY,
-                    start_date: `${today.getFullYear()}-${today.getMonth()+1}-${today.getDate()}`,
-                    end_date: `${new Date().toLocaleString().slice(6,10)}-${new Date().toLocaleString().slice(3, 5)}-${prev_date}`,
-                },
-                success: function (data) {
-                    wallpaper(data);
-                },
-                error: function (data) {
-                    console.error(data);
-                },
-            });
         },
     });
 });
@@ -100,7 +83,13 @@ function wallpaper(data) {
         if($(`img#${id}.card-img-top`).attr("src") !== "http://localhost:4662/static/image/placeholder.png") {
             button.innerHTML = `<button type="button" class="btn btn-primary" id="setWallpaper">Set Wallpaper</button>`;
         } else {
-            button.innerHTML = `<button type="button" class="btn" id="setWallpaper" disabled style="background-color: grey; color: white;">Set Wallpaper</button>`;
+            button.innerHTML = `<button type="button" 
+                                        class="btn" 
+                                        id="setWallpaper" 
+                                        disabled 
+                                        style="background-color: grey; color: white;">
+                                        Set Wallpaper
+                                </button>`;
         }
 
         let setWallpaper = document.querySelector("#setWallpaper");
@@ -154,8 +143,8 @@ function wallpaper(data) {
                 url: "https://api.nasa.gov/planetary/apod",
                 data: {
                     api_key: apiKEY,
-                    start_date: `${endDate.getFullYear()}-${endDate.getMonth() + 1}-${endDate.getDate()}`,
-                    end_date: `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`,
+                    start_date: `${endDate.getUTCFullYear()}-${endDate.getUTCMonth() + 1}-${endDate.getUTCDate()}`,
+                    end_date: `${today.getUTCFullYear()}-${today.getUTCMonth() + 1}-${today.getUTCDate()}`,
                 },
                 success: function (data) {
                     wallpaper(data);
