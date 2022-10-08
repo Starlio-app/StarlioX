@@ -100,7 +100,7 @@ function wallpaper(data) {
         if($(`img#${id}.card-img-top`).attr("src") !== "http://localhost:4662/static/image/placeholder.png") {
             button.innerHTML = `<button type="button" class="btn btn-primary" id="setWallpaper">Set Wallpaper</button>`;
         } else {
-            button.innerHTML = `<button type="button" class="btn btn-primary" id="setWallpaper" disabled>Set Wallpaper</button>`;
+            button.innerHTML = `<button type="button" class="btn" id="setWallpaper" disabled style="background-color: grey; color: white;">Set Wallpaper</button>`;
         }
 
         let setWallpaper = document.querySelector("#setWallpaper");
