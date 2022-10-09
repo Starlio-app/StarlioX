@@ -13,9 +13,9 @@ and sets it as a background for your workspace.
 
 | OS      | Status      | Latest version | Download                                                                            |
 |---------|-------------|----------------|-------------------------------------------------------------------------------------|
-| Windows | Available   | 2.0-beta       | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.0/EveryNasa.msi)    |
+| Windows | Available   | 1.6            | [.exe](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa.exe)    |
 | Debian  | Available   | 1.6            | [Binary file](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa) |
-| Android | Available   | 0.3-beta       | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   |
+| Android | Available   | 1.2.0          | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   |
 | MacOS   | Unavailable |                |                                                                                     |
 | iOS     | Unavailable |                |                                                                                     |
 
