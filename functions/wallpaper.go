@@ -63,7 +63,7 @@ func SetWallpaper() {
 
 func StartWallpaper() {
 	type Autostart struct {
-		Autochangewallpaper int `json:"autochangewallpaper"`
+		Wallpaper int `json:"wallpaper"`
 	}
 
 	client := fetch.NewDefault()
@@ -83,7 +83,7 @@ func StartWallpaper() {
 		Logger(err.Error())
 	}
 
-	if AutostartSetWallpaper.Autochangewallpaper == 1 {
+	if AutostartSetWallpaper.Wallpaper == 1 {
 		times := time.Now()
 		t := time.Date(times.Year(), times.Month(), times.Day(), 4, 50, times.Second(), times.Nanosecond(), time.UTC)
 
