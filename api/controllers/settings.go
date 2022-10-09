@@ -49,8 +49,6 @@ var SettingsUpdate = func(w http.ResponseWriter, r *http.Request) {
 	wallpaper := r.FormValue("wallpaper")
 	startup := r.FormValue("startup")
 
-	fmt.Println("S: "+startup, "W: "+wallpaper)
-
 	if startup == "" && wallpaper == "" {
 		utils.Respond(w, utils.Message(false, "All fields are required."))
 		return
@@ -63,6 +61,7 @@ var SettingsUpdate = func(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if wallpaper == "1" {
+			fmt.Println("Wallpaper enabled")
 			go functions.StartWallpaper()
 		}
 	}
