@@ -1,15 +1,22 @@
 package page
 
 import (
-	"net/http"
-
 	"github.com/Redume/EveryNasa/functions"
+	"net/http"
+	"strings"
 )
 
 func GalleryHandler(w http.ResponseWriter, r *http.Request) {
 	con := functions.Connected()
 	if con == false {
 		http.ServeFile(w, r, "web/src/errors/504.html")
+		return
+	}
+
+	userAgent := r.UserAgent()
+
+	if strings.Contains(userAgent, "Mobile") {
+		http.ServeFile(w, r, "web/src/errors/mobile.html")
 		return
 	}
 
