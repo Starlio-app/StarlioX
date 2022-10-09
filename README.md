@@ -1,49 +1,91 @@
-<p align="center"><img src="./web/static/image/icons/banner.png" alt="EveryNasa banner"></p>
+<p align="center"><img src="web/static/image/icons/banner.png" alt="EveryNasa banner" title="EveryNasa"></p>
 
-## Solution or answers to possible problems
-- [Windows](#windows)
-- [Debian](#linux)
-
----
-
-The program takes a picture from the NASA [website](https://apod.nasa.gov/apod) every day 
-and sets it as a background for your workspace. 
-Unfortunately, the addition of autorun is missing due to technical errors.
-
-| OS      	| Status      	| Download link                                                                        	|
-|---------	|-------------	|--------------------------------------------------------------------------------------	|
-| Windows 	| Available   	| [Download](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa.exe) 	|
-| Debian  	| Available   	| [Download](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa)     	|
-| Andorid 	| Dev         	| [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)    	|
-| MacOS   	| Unavailable 	|                                                                                      	|
-| iOS     	| Unavailable 	|                                                                                      	|
-## Windows
-
-[❗] If you get a notification that `EveryNasa` is a virus, 
-then disable the antivirus because it mistakenly believes, 
-and also deletes the file, in the near future I'm trying to solve this problem
+The program takes a picture from the NASA [website](https://apod.nasa.gov/apod) every day
+and sets it as a background for your workspace.
 
 ---
 
-## Linux
+### Contents
+- Solution or answers to possible problems [Windows](#windows) / [Linux](#linux)
+- [Build project](#build-project)
 
-### [❗] Only the Debian distribution was tested
+---
 
-#### Gnome
+| OS      | Status      | Latest version | Download                                                                            |
+|---------|-------------|----------------|-------------------------------------------------------------------------------------|
+| Windows | Available   | 2.0-beta       | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.0/EveryNasa.msi)    |
+| Debian  | Available   | 1.6            | [Binary file](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa) |
+| Android | Available   | 0.3-beta       | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   |
+| MacOS   | Unavailable |                |                                                                                     |
+| iOS     | Unavailable |                |                                                                                     |
 
-1. Install `gnome-shell-extension-appindicator`
+---
+
+### Solution or answers to possible problems
+#### Windows
+<details>
+<summary></summary>
+    <li>To make all functions work correctly, install the program anywhere except Program Files(x86) / Program Files</li>
+</details>
+
+#### Linux
+<details>
+<summary></summary>
+
+- If you have a mistake with `ayatana-appindicator3-0.1`
+
+    <details>
+        <summary><b>Debian / Ubuntu / Mint</b></summary>
+        <details>
+            <summary><b>KDE Plasma</b></summary>
+
+  ```shell
+  $ sudo apt install gir1.2-appindicator3-0.1
+  ```
+
+  </details>
+  <details>
+  <summary><b>GNOME</b></summary>
+
+  - Install the package
+  ```shell
+  $ sudo apt install gnome-shell-extension-appindicator
+  ```
+
+  - Open `Tweaks`
+  - Go to `Extensions`
+  - Enable `Kstatusnotifieritem/appindicator support`
+</details>
+</details>
+</details>
+
+### Build project
+
+<details>
+<summary></summary>
+
+- Close the repository
 ```shell
-$ sudo apt install gnome-shell-extension-appindicator
+$ git clone https://github.com/Redume/EveryNasa.git
 ```
-2. Search `tweaks` in your `Activities` screen
-3. Switch `Kstatusnotifieritem/appindicator support` on
-
----
-
-#### Kde Plasma
-
-Install `gir1.2-appindicator3-0.1`
+- Change directory
+```shell
+$ cd EveryNasa
+```
+- Build project
+<details>
+<summary><b>Windows</b></summary>
 
 ```shell
-$ sudo apt install gir1.2-appindicator3-0.1
+$ go build -o EveryNasa.exe -ldflags = "-H windowsgui"
 ```
+
+</details>
+<details>
+<summary><b>Linux</b></summary>
+
+```shell
+$ go build -o EveryNasa
+```
+</details>
+</details>
