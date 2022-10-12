@@ -16,37 +16,10 @@
 }
 
 .settings p, .form-check {
-    margin-left: -12em;
+    margin-left: -17.5em;
     margin-top: -0.8em;
 }
 
-
-#update {
-    display: inline-block;
-    width: 25%;
-    height: 6.7em;
-    margin-left: 2em;
-    margin-top: 1em;
-    background-color: #2f3041;
-    border-radius: 9px;
-}
-
-#update-title, #update-desc, #update-button {
-    margin-left: 0.7em;
-}
-
-#update-desc {
-    margin-top: -0.9em;
-}
-
-#update-button {
-    margin-top: -0.6em;
-}
-
-#update-title {
-    margin-top: 0.3em;
-}
-
 #createLabelButton {
-    margin-left: -12em;
+    margin-left: -17.6em;
 }
