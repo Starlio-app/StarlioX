@@ -28,3 +28,10 @@ lottie-player {
 .modal-body p {
     font-family: 'Roboto', sans-serif;
 }
+
+.navbar {
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+}
