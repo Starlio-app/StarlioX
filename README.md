@@ -5,32 +5,27 @@ and sets it as a background for your workspace.
 
 ---
 
-### Contents
-- Solution or answers to possible problems [Windows](#windows) / [Linux](#linux)
-- [Build project](#build-project)
-
----
-
 | OS      | Status      | Latest version | Download                                                                            |
 |---------|-------------|----------------|-------------------------------------------------------------------------------------|
-| Windows | Available   | 2.0            | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.0/EveryNasa.msi)    |
+| Windows | Available   | 2.0-beta       | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.0/EveryNasa.msi)    |
 | Debian  | Available   | 1.6            | [Binary file](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa) |
-| Android | Available   | 1.2.1          | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   |
+| Android | Available   | 1.2.1          | [Play Market](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   |
 | MacOS   | Unavailable |                |                                                                                     |
 | iOS     | Unavailable |                |                                                                                     |
 
 ---
 
 ### Solution or answers to possible problems
-#### Windows
+Any bugs / problems that are not covered by these questions, please open an [issue](https://github.com/Redume/EveryNasa/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug)
+
 <details>
-<summary></summary>
+<summary>Windows</summary>
     <li>To make all functions work correctly, install the program anywhere except Program Files(x86) / Program Files</li>
 </details>
 
-#### Linux
+
 <details>
-<summary></summary>
+<summary>Linux</summary>
 
 - If you have a mistake with `ayatana-appindicator3-0.1`
 
@@ -47,45 +42,28 @@ and sets it as a background for your workspace.
   <details>
   <summary><b>GNOME</b></summary>
 
-  - Install the package
+    - Install the package
   ```shell
   $ sudo apt install gnome-shell-extension-appindicator
   ```
 
-  - Open `Tweaks`
-  - Go to `Extensions`
-  - Enable `Kstatusnotifieritem/appindicator support`
+    - Open `Tweaks`
+    - Go to `Extensions`
+    - Enable `Kstatusnotifieritem/appindicator support`
 </details>
 </details>
 </details>
 
-### Build project
+### License
 
-<details>
-<summary></summary>
+This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details.
 
-- Close the repository
-```shell
-$ git clone https://github.com/Redume/EveryNasa.git
-```
-- Change directory
-```shell
-$ cd EveryNasa
-```
-- Build project
-<details>
-<summary><b>Windows</b></summary>
-
-```shell
-$ go build -o EveryNasa.exe -ldflags = "-H windowsgui"
-```
-
-</details>
-<details>
-<summary><b>Linux</b></summary>
-
-```shell
-$ go build -o EveryNasa
-```
-</details>
-</details>
+### Third-party library licenses
+- [getlantern/systray](https://github.com/getlantern/systray) — [Apache-2.0](https://github.com/getlantern/systray/blob/master/LICENSE)
+- [gofiber/fiber](https://github.com/gofiber/fiber) — [MIT](https://github.com/gofiber/fiber/blob/master/LICENSE)
+- [go-ole/go-ole](https://github.com/go-ole/go-ole) — [MIT](https://github.com/go-ole/go-ole/blob/master/LICENSE)
+- [mattn/go-sqlite3](https://github.com/mattn/go-sqlite3) — [MIT](https://github.com/mattn/go-sqlite3/blob/master/LICENSE)
+- [rodkranz/fetch](https://github.com/rodkranz/fetch) — [MIT](https://github.com/rodkranz/fetch/blob/master/LICENSE)
+- [shirou/gopsutil](https://github.com/shirou/gopsutil) — [BSD-3-Clause](https://github.com/shirou/gopsutil/blob/master/LICENSE)
+- [skratchdot/open-golang](https://github.com/skratchdot/open-golang) — [MIT](https://github.com/skratchdot/open-golang/blob/master/LICENSE)
+- [go-yaml/yaml](https://github.com/go-yaml/yaml) — [MIT and Apache-2.0](https://github.com/go-yaml/yaml/blob/v3/LICENSE)
