@@ -19,7 +19,7 @@ func Tray() {
 	for {
 		select {
 		case <-ui.ClickedCh:
-			err := open.Run("http://localhost:4662")
+			err := open.Run("http://localhost:3000")
 			if err != nil {
 				Logger(err.Error())
 			}

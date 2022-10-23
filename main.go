@@ -1,54 +1,61 @@
 package main
 
 import (
-	"net/http"
-
 	"github.com/Redume/EveryNasa/api/controllers"
 	"github.com/Redume/EveryNasa/functions"
-	"github.com/Redume/EveryNasa/web/pages"
+	"github.com/Redume/EveryNasa/web/page"
+
 	"github.com/getlantern/systray"
-	"github.com/gorilla/mux"
+	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
-	go functions.Logger("EveryNasa started")
 	go functions.Database()
 	go systray.Run(functions.Tray, functions.Quit)
 	go functions.StartWallpaper()
 
-	router := mux.NewRouter()
-	router.Use(func(next http.Handler) http.Handler {
-		return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-			w.Header().Set("Access-Control-Allow-Origin", "*")
-			w.Header().Set("Access-Control-Allow-Methods", "POST, GET")
-			w.Header().Set("Access-Control-Allow-Headers", "Accept, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
-			next.ServeHTTP(w, r)
-		})
+	app := fiber.New()
+	app.Static("/static", "./web/static")
+	app.Use(cors.New())
+
+	app.Get("/", func(c *fiber.Ctx) error {
+		return page.Gallery(c)
+	})
+	app.Get("/settings", func(c *fiber.Ctx) error {
+		return page.Settings(c)
+	})
+	app.Get("/about", func(c *fiber.Ctx) error {
+		return page.About(c)
 	})
 
-	http.Handle("/static/", http.StripPrefix("/static/", http.FileServer(http.Dir("./web/static"))))
+	app.Post("/api/update/settings", func(c *fiber.Ctx) error {
+		return controllers.SettingsUpdate(c)
+	})
+	app.Post("/api/update/wallpaper", func(c *fiber.Ctx) error {
+		return controllers.WallpaperUpdate(c)
+	})
+	app.Post("/api/update/startup", func(c *fiber.Ctx) error {
+		return controllers.Startup(c)
+	})
+	app.Post("/api/create/label", func(c *fiber.Ctx) error {
+		return controllers.CreateLabel(c)
+	})
 
-	http.HandleFunc("/", page.GalleryHandler)
-	http.HandleFunc("/settings", page.SettingsHandler)
-	http.HandleFunc("/about", page.AboutHandler)
+	app.Get("/api/get/settings", func(c *fiber.Ctx) error {
+		return controllers.SettingsGet(c)
+	})
 
-	router.HandleFunc("/api/get/settings", controllers.SettingsGet).Methods("GET")
-	router.HandleFunc("/api/get/version", controllers.Version).Methods("GET")
-
-	router.HandleFunc("/api/update/settings", controllers.SettingsUpdate).Methods("POST")
-	router.HandleFunc("/api/update/wallpaper", controllers.WallpaperUpdate).Methods("POST")
-	router.HandleFunc("/api/update/startup", controllers.Startup).Methods("POST")
-	router.HandleFunc("/api/create/label", controllers.CreateLabel).Methods("POST")
-
-	go func() {
-		err := http.ListenAndServe(":4662", nil)
+	app.Use(func(c *fiber.Ctx) error {
+		err := c.SendStatus(404)
 		if err != nil {
 			functions.Logger(err.Error())
 		}
-	}()
+		return c.SendFile("./web/errors/404.html")
+	})
 
-	err := http.ListenAndServe(":8080", router)
+	err := app.Listen(":3000")
 	if err != nil {
-		functions.Logger(err.Error())
+		return
 	}
 }

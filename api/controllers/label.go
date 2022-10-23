@@ -1,16 +1,16 @@
 package controllers
 
 import (
-	"net/http"
 	"os"
 	"os/user"
 	"strings"
 
 	"github.com/Redume/EveryNasa/api/utils"
 	"github.com/Redume/EveryNasa/functions"
+	"github.com/gofiber/fiber/v2"
 )
 
-var CreateLabel = func(w http.ResponseWriter, r *http.Request) {
+var CreateLabel = func(c *fiber.Ctx) error {
 	u, err := user.Current()
 	if err != nil {
 		functions.Logger(err.Error())
@@ -28,5 +28,6 @@ var CreateLabel = func(w http.ResponseWriter, r *http.Request) {
 		functions.Logger(err.Error())
 	}
 
-	utils.Respond(w, utils.Message(true, "The shortcut was successfully created"))
+	utils.Respond(c, utils.Message(true, "The shortcut was successfully created"))
+	return nil
 }
