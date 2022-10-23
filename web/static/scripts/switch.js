@@ -6,9 +6,10 @@ $(document).ready(async function() {
     const $wallpaperSwitchTogglerName = $("#settings_autoSetWallpaperTogglerName");
 
     $.ajax({
-        url: "http://localhost:8080/api/get/settings",
+        url: "http://localhost:3000/api/get/settings",
         type: "GET",
         success: function(data) {
+            console.log(data);
             if (data["wallpaper"] === 1) {
                 $wallpaperSwitch.attr("checked", "true");
                 $wallpaperSwitchTogglerName.text("On");
@@ -22,12 +23,12 @@ $(document).ready(async function() {
 
     $wallpaperSwitch.click(async function() {
         $.ajax({
-            url: "http://localhost:8080/api/get/settings",
+            url: "http://localhost:3000/api/get/settings",
             type: "GET",
             success: function (data) {
                 if (data["wallpaper"] === 1) {
                     $.ajax({
-                        url: "http://localhost:8080/api/update/settings",
+                        url: "http://localhost:3000/api/update/settings",
                         type: "POST",
                         data: {
                             "wallpaper": 0,
@@ -45,7 +46,7 @@ $(document).ready(async function() {
                     });
                 } else {
                     $.ajax({
-                        url: "http://localhost:8080/api/update/settings",
+                        url: "http://localhost:3000/api/update/settings",
                         type: "POST",
                         data: {
                             "wallpaper": 1,
@@ -69,12 +70,12 @@ $(document).ready(async function() {
 
     $startupSwitch.click(async function() {
         $.ajax({
-            url: "http://localhost:8080/api/get/settings",
+            url: "http://localhost:3000/api/get/settings",
             type: "GET",
             success: function (data) {
                 if (data["startup"] === 1) {
                     $.ajax({
-                        url: "http://localhost:8080/api/update/settings",
+                        url: "http://localhost:3000/api/update/settings",
                         type: "POST",
                         data: {
                             "startup": 0,
@@ -94,7 +95,7 @@ $(document).ready(async function() {
                     });
                 } else {
                     $.ajax({
-                        url: "http://localhost:8080/api/update/settings",
+                        url: "http://localhost:3000/api/update/settings",
                         type: "POST",
                         data: {
                             "startup": 1,
@@ -127,7 +128,7 @@ function toast(message) {
 
 function editStartup(i) {
     return $.ajax({
-        url: "http://localhost:8080/api/update/startup",
+        url: "http://localhost:3000/api/update/startup",
         type: "POST",
         data: {
             "startup": i

@@ -1,7 +1,7 @@
 let button = document.querySelector("#createLabelButton");
 button.addEventListener("click", function() {
     $.ajax({
-       url: "http://localhost:8080/api/create/label",
+       url: "http://localhost:3000/api/create/label",
        type: "POST",
        success: function(data) {
            if(data.status) {
