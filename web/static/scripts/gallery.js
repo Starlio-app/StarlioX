@@ -56,7 +56,7 @@ function wallpaper(data) {
             $(".header-row").append(`
             <div class="card">
                 <a data-bs-toggle="modal" href="#WallpaperModal" role="button">
-                    <img src="http://localhost:4662/static/image/placeholder.png" 
+                    <img src="http://localhost:3000/static/image/placeholder.png" 
                         data-src="https://img.youtube.com/vi/${ids[id]['url'].slice(30, 41)}/maxresdefault.jpg"
                         alt="${ids[id]['title']}" 
                         class="card-img-top" 
@@ -80,7 +80,7 @@ function wallpaper(data) {
 
         let button = document.querySelector(".modal-footer");
 
-        if($(`img#${id}.card-img-top`).attr("src") !== "http://localhost:4662/static/image/placeholder.png") {
+        if($(`img#${id}.card-img-top`).attr("src") !== "http://localhost:3000/static/image/placeholder.png") {
             button.innerHTML = `<button type="button" class="btn btn-primary" id="setWallpaper">Set Wallpaper</button>`;
         } else {
             button.innerHTML = `<button type="button" 
@@ -157,7 +157,7 @@ function wallpaper(data) {
 
 function wallpaperUpdate(url) {
     $.ajax({
-        url: "http://localhost:8080/api/update/wallpaper",
+        url: "http://localhost:3000/api/update/wallpaper",
         type: "POST",
         data: {
             url: url,
