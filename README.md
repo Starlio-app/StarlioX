@@ -55,7 +55,6 @@ Any bugs / problems that are not covered by these questions, please open an [iss
 </details>
 
 ### License
-
 This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details.
 
 ### Third-party library licenses
@@ -66,4 +65,3 @@ This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENS
 - [rodkranz/fetch](https://github.com/rodkranz/fetch) — [MIT](https://github.com/rodkranz/fetch/blob/master/LICENSE)
 - [shirou/gopsutil](https://github.com/shirou/gopsutil) — [BSD-3-Clause](https://github.com/shirou/gopsutil/blob/master/LICENSE)
 - [skratchdot/open-golang](https://github.com/skratchdot/open-golang) — [MIT](https://github.com/skratchdot/open-golang/blob/master/LICENSE)
-- [go-yaml/yaml](https://github.com/go-yaml/yaml) — [MIT and Apache-2.0](https://github.com/go-yaml/yaml/blob/v3/LICENSE)
