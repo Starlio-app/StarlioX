@@ -2,27 +2,14 @@ package functions
 
 import (
 	"encoding/json"
-	"os"
 	"time"
 
 	"github.com/jasonlvhit/gocron"
 	"github.com/reujab/wallpaper"
 	"github.com/rodkranz/fetch"
-	"gopkg.in/yaml.v2"
 )
 
-func GetWallpaper() string {
-	file, err := os.ReadFile("config.yaml")
-	if err != nil {
-		Logger(err.Error())
-	}
-	data := make(map[interface{}]interface{})
-
-	err = yaml.Unmarshal(file, &data)
-	if err != nil {
-		Logger(err.Error())
-	}
-
+func GetWallpaper(date string) string {
 	type WallpaperStruct struct {
 		Hdurl      string `json:"hdurl"`
 		Url        string `json:"url"`
@@ -30,7 +17,9 @@ func GetWallpaper() string {
 	}
 
 	client := fetch.NewDefault()
-	res, err := client.Get("https://api.nasa.gov/planetary/apod?api_key="+data["apiKey"].(string), nil)
+	res, err := client.Get("https://api.nasa.gov/planetary/apod?api_key=1gI9G84ZafKDEnrbydviGknReOGiVK9jqrQBE3et&date="+
+		date,
+		nil)
 	if err != nil {
 		Logger(err.Error())
 	}
@@ -47,17 +36,31 @@ func GetWallpaper() string {
 	}
 
 	if Wallpaper.Media_type == "video" {
-		Wallpaper.Url = Wallpaper.Url[30 : len(Wallpaper.Url)-6]
-		return "https://img.youtube.com/vi/" + Wallpaper.Url + "/0.jpg"
+		Wallpaper.Url = "https://img.youtube.com/vi/" + Wallpaper.Url[30:41] + "/maxresdefault.jpg"
+		return "https://img.youtube.com/vi/" + Wallpaper.Url[30:41] + "/maxresdefault.jpg"
 	}
 
 	return Wallpaper.Hdurl
 }
 
 func SetWallpaper() {
-	err := wallpaper.SetFromURL(GetWallpaper())
+	times := time.Now()
+	t := time.Date(times.Year(),
+		times.Month(),
+		times.Day(),
+		times.Hour(),
+		times.Minute(),
+		times.Second(),
+		times.Nanosecond(),
+		time.UTC)
+
+	err := wallpaper.SetFromURL(GetWallpaper(t.Format("2006-01-02")))
 	if err != nil {
-		Logger(err.Error())
+		t = t.AddDate(0, 0, -1)
+		err = wallpaper.SetFromURL(GetWallpaper(t.Format("2006-01-02")))
+		if err != nil {
+			Logger(err.Error())
+		}
 	}
 }
 
@@ -67,7 +70,7 @@ func StartWallpaper() {
 	}
 
 	client := fetch.NewDefault()
-	res, err := client.Get("http://localhost:8080/api/get/settings", nil)
+	res, err := client.Get("http://localhost:3000/api/get/settings", nil)
 	if err != nil {
 		Logger(err.Error())
 	}
@@ -85,7 +88,14 @@ func StartWallpaper() {
 
 	if AutostartSetWallpaper.Wallpaper == 1 {
 		times := time.Now()
-		t := time.Date(times.Year(), times.Month(), times.Day(), 4, 50, times.Second(), times.Nanosecond(), time.UTC)
+		t := time.Date(times.Year(),
+			times.Month(),
+			times.Day(),
+			4,
+			50,
+			times.Second(),
+			times.Nanosecond(),
+			time.UTC)
 
 		SetWallpaper()
 
