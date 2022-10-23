@@ -2,21 +2,20 @@ package controllers
 
 import (
 	"database/sql"
-	"fmt"
-	"net/http"
-
 	"github.com/Redume/EveryNasa/api/utils"
 	"github.com/Redume/EveryNasa/functions"
+	"github.com/gofiber/fiber/v2"
 	_ "github.com/mattn/go-sqlite3"
 )
 
-var SettingsGet = func(w http.ResponseWriter, r *http.Request) {
+var SettingsGet = func(c *fiber.Ctx) error {
 	db, err := sql.Open("sqlite3", "EveryNasa.db")
 	if err != nil {
 		functions.Logger(err.Error())
 	}
 
-	query, err := db.Query("SELECT * FROM settings")
+	querySettings, err := db.Query("SELECT * FROM settings")
+
 	if err != nil {
 		functions.Logger(err.Error())
 	}
@@ -26,32 +25,34 @@ var SettingsGet = func(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			functions.Logger(err.Error())
 		}
-	}(query)
+	}(querySettings)
 
 	var startup, wallpaper int
 
-	for query.Next() {
-		err := query.Scan(&startup, &wallpaper)
+	for querySettings.Next() {
+		err := querySettings.Scan(&startup, &wallpaper)
 		if err != nil {
 			functions.Logger(err.Error())
 		}
 		var data = map[string]interface{}{"startup": startup, "wallpaper": wallpaper}
-		utils.Respond(w, data)
+		utils.Respond(c, data)
 	}
+
+	return nil
 }
 
-var SettingsUpdate = func(w http.ResponseWriter, r *http.Request) {
+var SettingsUpdate = func(c *fiber.Ctx) error {
 	db, err := sql.Open("sqlite3", "EveryNasa.db")
 	if err != nil {
 		functions.Logger(err.Error())
 	}
 
-	wallpaper := r.FormValue("wallpaper")
-	startup := r.FormValue("startup")
+	startup := c.FormValue("startup")
+	wallpaper := c.FormValue("wallpaper")
 
 	if startup == "" && wallpaper == "" {
-		utils.Respond(w, utils.Message(false, "All fields are required."))
-		return
+		utils.Respond(c, utils.Message(false, "All fields are required."))
+		return nil
 	}
 
 	if wallpaper != "" {
@@ -61,7 +62,6 @@ var SettingsUpdate = func(w http.ResponseWriter, r *http.Request) {
 		}
 
 		if wallpaper == "1" {
-			fmt.Println("Wallpaper enabled")
 			go functions.StartWallpaper()
 		}
 	}
@@ -73,5 +73,6 @@ var SettingsUpdate = func(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 
-	utils.Respond(w, utils.Message(true, "The settings have been applied successfully."))
+	utils.Respond(c, utils.Message(true, "The settings have been applied successfully."))
+	return nil
 }

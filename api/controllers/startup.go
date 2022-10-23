@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"net/http"
+	"github.com/gofiber/fiber/v2"
 	"os"
 	"os/user"
 	"strings"
@@ -10,24 +10,26 @@ import (
 	"github.com/Redume/EveryNasa/functions"
 )
 
-var Startup = func(w http.ResponseWriter, r *http.Request) {
-	startup := r.FormValue("startup")
+var Startup = func(c *fiber.Ctx) error {
+	startup := c.FormValue("startup")
 	if startup == "" {
-		utils.Respond(w, utils.Message(false, "All fields are required."))
-		return
+		utils.Respond(c, utils.Message(false, "All fields are required."))
+		return nil
 	}
 
 	if startup == "1" {
-		SetStartup(w, r)
+		SetStartup(c)
 	} else if startup == "0" {
-		RemoveStartup(w, r)
+		RemoveStartup(c)
 	} else {
-		utils.Respond(w, utils.Message(false, "Invalid field."))
-		return
+		utils.Respond(c, utils.Message(false, "Invalid field."))
+		return nil
 	}
+
+	return nil
 }
 
-var SetStartup = func(w http.ResponseWriter, r *http.Request) {
+var SetStartup = func(c *fiber.Ctx) error {
 	u, err := user.Current()
 	if err != nil {
 		functions.Logger(err.Error())
@@ -45,10 +47,11 @@ var SetStartup = func(w http.ResponseWriter, r *http.Request) {
 		functions.Logger(err.Error())
 	}
 
-	utils.Respond(w, utils.Message(true, "The settings have been applied successfully."))
+	utils.Respond(c, utils.Message(true, "The settings have been applied successfully."))
+	return nil
 }
 
-var RemoveStartup = func(w http.ResponseWriter, r *http.Request) {
+var RemoveStartup = func(c *fiber.Ctx) error {
 	u, err := user.Current()
 	if err != nil {
 		functions.Logger(err.Error())
@@ -59,5 +62,6 @@ var RemoveStartup = func(w http.ResponseWriter, r *http.Request) {
 		functions.Logger(err.Error())
 	}
 
-	utils.Respond(w, utils.Message(true, "The settings have been applied successfully."))
+	utils.Respond(c, utils.Message(true, "The settings have been applied successfully."))
+	return nil
 }
