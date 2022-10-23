@@ -12,13 +12,14 @@ func Database() {
 		Logger(err.Error())
 	}
 
-	var exists bool
-	err = db.QueryRow("SELECT EXISTS(SELECT name FROM sqlite_master WHERE type='table' AND name='settings')").Scan(&exists)
+	var existsSettings bool
+	err = db.QueryRow("SELECT EXISTS(SELECT name FROM sqlite_master WHERE type='table' AND name='settings')").Scan(&existsSettings)
+
 	if err != nil {
 		Logger(err.Error())
 	}
 
-	if exists == false {
+	if existsSettings == false {
 		sqlTable := `
 			CREATE TABLE IF NOT EXISTS settings (
 			    startup INTEGER DEFAULT 0,
