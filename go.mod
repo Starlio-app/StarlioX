@@ -5,7 +5,7 @@ go 1.19
 require (
 	github.com/getlantern/systray v1.2.1
 	github.com/go-ole/go-ole v1.2.6
-	github.com/gofiber/fiber/v2 v2.38.1
+	github.com/gofiber/fiber/v2 v2.39.0
 	github.com/jasonlvhit/gocron v0.0.1
 	github.com/mattn/go-sqlite3 v1.14.15
 	github.com/reujab/wallpaper v0.0.0-20210630195606-5f9f655b3740
@@ -25,8 +25,12 @@ require (
 	github.com/go-stack/stack v1.8.0 // indirect
 	github.com/klauspost/compress v1.15.11 // indirect
 	github.com/lufia/plan9stats v0.0.0-20211012122336-39d0f177ccd0 // indirect
+	github.com/mattn/go-colorable v0.1.13 // indirect
+	github.com/mattn/go-isatty v0.0.16 // indirect
+	github.com/mattn/go-runewidth v0.0.14 // indirect
 	github.com/oxtoacart/bpool v0.0.0-20190530202638-03653db5a59c // indirect
 	github.com/power-devops/perfstat v0.0.0-20210106213030-5aafc221ea8c // indirect
+	github.com/rivo/uniseg v0.2.0 // indirect
 	github.com/tklauser/go-sysconf v0.3.10 // indirect
 	github.com/tklauser/numcpus v0.4.0 // indirect
 	github.com/valyala/bytebufferpool v1.0.0 // indirect
