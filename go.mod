@@ -7,7 +7,7 @@ require (
 	github.com/go-ole/go-ole v1.2.6
 	github.com/gofiber/fiber/v2 v2.38.1
 	github.com/jasonlvhit/gocron v0.0.1
-	github.com/mattn/go-sqlite3 v1.14.15
+	github.com/mattn/go-sqlite3 v1.14.16
 	github.com/reujab/wallpaper v0.0.0-20210630195606-5f9f655b3740
 	github.com/rodkranz/fetch v1.2.0
 	github.com/shirou/gopsutil/v3 v3.22.9
