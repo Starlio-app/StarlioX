@@ -48,20 +48,12 @@ func main() {
 
 	update := api.Group("/update")
 	get := api.Group("/get")
-	create := api.Group("/create")
 
 	update.Post("/settings", func(c *fiber.Ctx) error {
 		return controllers.SettingsUpdate(c)
 	})
 	update.Post("/wallpaper", func(c *fiber.Ctx) error {
 		return controllers.WallpaperUpdate(c)
-	})
-	update.Post("/startup", func(c *fiber.Ctx) error {
-		return controllers.Startup(c)
-	})
-
-	create.Post("/api/create/label", func(c *fiber.Ctx) error {
-		return controllers.CreateLabel(c)
 	})
 
 	get.Get("/settings", func(c *fiber.Ctx) error {
