@@ -36,7 +36,6 @@ func GetWallpaper(date string) string {
 	}
 
 	if Wallpaper.Media_type == "video" {
-		Wallpaper.Url = "https://img.youtube.com/vi/" + Wallpaper.Url[30:41] + "/maxresdefault.jpg"
 		return "https://img.youtube.com/vi/" + Wallpaper.Url[30:41] + "/maxresdefault.jpg"
 	}
 
