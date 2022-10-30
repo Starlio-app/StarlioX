@@ -4,7 +4,6 @@ import (
 	"github.com/Redume/EveryNasa/api/controllers"
 	"github.com/Redume/EveryNasa/functions"
 	"github.com/Redume/EveryNasa/web/page"
-
 	"github.com/getlantern/systray"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -16,6 +15,22 @@ func main() {
 	go functions.StartWallpaper()
 
 	app := fiber.New()
+	app = fiber.New(fiber.Config{
+		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
+			code := fiber.StatusInternalServerError
+
+			if e, ok := err.(*fiber.Error); ok {
+				code = e.Code
+			}
+
+			if code == fiber.StatusNotFound {
+				return ctx.SendFile("./web/errors/404.html")
+			}
+
+			return nil
+		},
+	})
+
 	app.Static("/static", "./web/static")
 	app.Use(cors.New())
 
@@ -29,29 +44,32 @@ func main() {
 		return page.About(c)
 	})
 
-	app.Post("/api/update/settings", func(c *fiber.Ctx) error {
+	api := app.Group("/api")
+
+	update := api.Group("/update")
+	get := api.Group("/get")
+	create := api.Group("/create")
+
+	update.Post("/settings", func(c *fiber.Ctx) error {
 		return controllers.SettingsUpdate(c)
 	})
-	app.Post("/api/update/wallpaper", func(c *fiber.Ctx) error {
+	update.Post("/wallpaper", func(c *fiber.Ctx) error {
 		return controllers.WallpaperUpdate(c)
 	})
-	app.Post("/api/update/startup", func(c *fiber.Ctx) error {
+	update.Post("/startup", func(c *fiber.Ctx) error {
 		return controllers.Startup(c)
 	})
-	app.Post("/api/create/label", func(c *fiber.Ctx) error {
+
+	create.Post("/label", func(c *fiber.Ctx) error {
 		return controllers.CreateLabel(c)
 	})
 
-	app.Get("/api/get/settings", func(c *fiber.Ctx) error {
+	get.Get("/settings", func(c *fiber.Ctx) error {
 		return controllers.SettingsGet(c)
 	})
 
-	app.Use(func(c *fiber.Ctx) error {
-		err := c.SendStatus(404)
-		if err != nil {
-			functions.Logger(err.Error())
-		}
-		return c.SendFile("./web/errors/404.html")
+	get.Get("/settings", func(c *fiber.Ctx) error {
+		return controllers.SettingsGet(c)
 	})
 
 	err := app.Listen(":3000")

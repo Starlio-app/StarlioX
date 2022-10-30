@@ -1,6 +1,7 @@
 package functions
 
 import (
+	"fmt"
 	"os"
 	"runtime"
 	"strings"
@@ -20,7 +21,8 @@ func Logger(text string) {
 	}
 	now := time.Now()
 
-	_, file, _, ok := runtime.Caller(1)
+	_, file, line, ok := runtime.Caller(1)
+
 	if !ok {
 		file = "???"
 	}
@@ -31,10 +33,15 @@ func Logger(text string) {
 	}
 
 	if strings.Contains(file, dir) {
-		file = file[len(dir)+1:]
+		file = strings.Replace(file, dir, "", -1)
 	}
 
-	_, err = f.Write([]byte(now.Format("Mon Jan 2 15:04:05 2006") + " | " + text + " [" + file + "] " + "\n"))
+	var lineString string
+	if ok {
+		lineString = fmt.Sprintf("%d", line)
+	}
+
+	_, err = f.Write([]byte(now.Format("Mon Jan 2 15:04:05 2006") + " | " + text + " [" + file + "] [" + lineString + "]\n"))
 	if err != nil {
 		panic(err)
 	}
