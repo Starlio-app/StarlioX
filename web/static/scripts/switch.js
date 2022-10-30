@@ -9,7 +9,6 @@ $(document).ready(async function() {
         url: "http://localhost:3000/api/get/settings",
         type: "GET",
         success: function(data) {
-            console.log(data);
             if (data["wallpaper"] === 1) {
                 $wallpaperSwitch.attr("checked", "true");
                 $wallpaperSwitchTogglerName.text("On");
