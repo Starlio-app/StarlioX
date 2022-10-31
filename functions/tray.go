@@ -30,7 +30,7 @@ func Tray() {
 }
 
 func Quit() {
-	err := KillProcess("EveryNasa.exe")
+	err := KillProcess("main.go")
 	if err != nil {
 		Logger(err.Error())
 	}
