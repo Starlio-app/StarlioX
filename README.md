@@ -5,13 +5,13 @@ and sets it as a background for your workspace.
 
 ---
 
-| OS      | Status      | Latest version | Download                                                                            |
-|---------|-------------|----------------|-------------------------------------------------------------------------------------|
-| Windows | Available   | 2.0-beta       | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.0/EveryNasa.msi)    |
-| Debian  | Available   | 1.6            | [Binary file](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa) |
-| Android | Available   | 1.2.1          | [Play Market](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   |
-| MacOS   | Unavailable |                |                                                                                     |
-| iOS     | Unavailable |                |                                                                                     |
+| OS      | Status      | Latest version | Download                                                                                                       |
+|---------|-------------|----------------|----------------------------------------------------------------------------------------------------------------|
+| Windows | Available   | 2.0            | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.0/EveryNasa.msi)                               |
+| Linux   | Available   | 2.0            | [There is no installation file but there is a separate branch](https://github.com/Redume/EveryNasa/tree/linux) |
+| Android | Available   | 1.2.1          | [Play Market](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)                              |
+| MacOS   | Unavailable |                |                                                                                                                |
+| iOS     | Unavailable |                |                                                                                                                |
 
 ---
 
