@@ -1,0 +1,50 @@
+body {
+    background-color: #2F3041;
+    color: white;
+}
+
+* {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+#devices {
+    width: 840px;
+    height: 357px;
+    margin: 260px 40px;
+}
+
+#content p {
+    font-family: 'Roboto', sans-serif;
+}
+
+#title {
+    font-size: 4em;
+    margin-top: -33%;
+    margin-left: 65%;
+}
+
+#subtitle {
+    font-size: 2em;
+    margin-left: 58%;
+    margin-top: -1.3%;
+}
+
+#description {
+    font-size: 1.5em;
+    margin-left: 58%;
+    width: 600px;
+    height: 114px;
+}
+
+#google-play, #github {
+    width: 315px;
+    height: 114px;
+}
+
+#get-it-on {
+    margin-left: 57%;
+    margin-top: 1%;
+}
