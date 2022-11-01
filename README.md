@@ -7,7 +7,7 @@ and sets it as a background for your workspace.
 
 | OS      | Status      | Latest version | Download                                                                                                       |
 |---------|-------------|----------------|----------------------------------------------------------------------------------------------------------------|
-| Windows | Available   | 2.1            | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.0/EveryNasa.msi)                               |
+| Windows | Available   | 2.1            | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.1/EveryNasa.msi)                               |
 | Linux   | Available   | 2.1            | [There is no installation file but there is a separate branch](https://github.com/Redume/EveryNasa/tree/linux) |
 | Android | Available   | 1.2.1          | [Play Market](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)                              |
 | MacOS   | Unavailable |                |                                                                                                                |
