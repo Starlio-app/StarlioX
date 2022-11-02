@@ -46,7 +46,6 @@ Any bugs / problems that are not covered by these questions, please open an [iss
   ```shell
   $ sudo apt install gnome-shell-extension-appindicator
   ```
-Copyright 2022 Redume
     - Open `Tweaks`
     - Go to `Extensions`
     - Enable `Kstatusnotifieritem/appindicator support`
