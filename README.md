@@ -46,8 +46,6 @@ Any bugs / problems that are not covered by these questions, please open an [iss
   ```shell
   $ sudo apt install gnome-shell-extension-appindicator
   ```
-### License
-```
 Copyright 2022 Redume
     - Open `Tweaks`
     - Go to `Extensions`
@@ -58,8 +56,7 @@ Copyright 2022 Redume
 
 ### License
 This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details.
-   http://www.apache.org/licenses/LICENSE-2.0
-  
+
 ### Third-party library licenses
 - [getlantern/systray](https://github.com/getlantern/systray) — [Apache-2.0](https://github.com/getlantern/systray/blob/master/LICENSE)
 - [gofiber/fiber](https://github.com/gofiber/fiber) — [MIT](https://github.com/gofiber/fiber/blob/master/LICENSE)
@@ -69,3 +66,5 @@ This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENS
 - [shirou/gopsutil](https://github.com/shirou/gopsutil) — [BSD-3](https://github.com/shirou/gopsutil/blob/master/LICENSE)
 - [skratchdot/open-golang](https://github.com/skratchdot/open-golang) — [MIT](https://github.com/skratchdot/open-golang/blob/master/LICENSE)
 - [twbs/bootstrap](https://github.com/twbs/bootstrap) — [MIT](https://github.com/twbs/bootstrap/blob/main/LICENSE)
+- [LottieFiles/lottie-player](https://github.com/LottieFiles/lottie-player) — [MIT](https://github.com/LottieFiles/lottie-player/blob/master/LICENSE)
+- [jquery/jquery](https://github.com/jquery/jquery) — [MIT](https://github.com/jquery/jquery/blob/main/LICENSE.txt)
