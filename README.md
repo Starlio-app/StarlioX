@@ -13,7 +13,6 @@ and sets it as a background for your workspace.
 | MacOS            | Unavailable |                |                                                                                     |
 | iOS              | Unavailable |                |                                                                                     |
 | Wallpaper Engine | Available   | 1.0            | [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2884180886) |
-|                  |             |                |                                                                                     |
 
 ---
 
