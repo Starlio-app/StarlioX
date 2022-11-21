@@ -27,14 +27,14 @@ var SettingsGet = func(c *fiber.Ctx) error {
 		}
 	}(querySettings)
 
-	var startup, wallpaper int
+	var startup, wallpaper, save_logg int
 
 	for querySettings.Next() {
-		err := querySettings.Scan(&startup, &wallpaper)
+		err := querySettings.Scan(&startup, &wallpaper, &save_logg)
 		if err != nil {
 			functions.Logger(err.Error())
 		}
-		var data = map[string]interface{}{"startup": startup, "wallpaper": wallpaper}
+		var data = map[string]interface{}{"startup": startup, "wallpaper": wallpaper, "save_logg": save_logg}
 		utils.Respond(c, data)
 	}
 
@@ -49,8 +49,9 @@ var SettingsUpdate = func(c *fiber.Ctx) error {
 
 	startup := c.FormValue("startup")
 	wallpaper := c.FormValue("wallpaper")
+	save_logg := c.FormValue("save_logg")
 
-	if startup == "" && wallpaper == "" {
+	if startup == "" && wallpaper == "" && save_logg == "" {
 		utils.Respond(c, utils.Message(false, "All fields are required."))
 		return nil
 	}
@@ -68,6 +69,13 @@ var SettingsUpdate = func(c *fiber.Ctx) error {
 
 	if startup != "" {
 		_, err := db.Exec("UPDATE settings SET startup = ?", startup)
+		if err != nil {
+			functions.Logger(err.Error())
+		}
+	}
+
+	if save_logg != "" {
+		_, err := db.Exec("UPDATE settings SET save_logg = ?", save_logg)
 		if err != nil {
 			functions.Logger(err.Error())
 		}

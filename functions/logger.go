@@ -9,17 +9,32 @@ import (
 )
 
 func Logger(text string) {
-	if !FileExists("logger.log") {
-		err := CreateFile("logger.log")
+	now := time.Now()
+
+	file := string(now.Format("01.02.2006")) + ".log"
+
+	if getDatabase() == 0 {
+		return
+	}
+
+	if !FileExists("logs") {
+		err := CreateFolder("logs")
 		if err != nil {
 			panic(err)
 		}
 	}
-	f, err := os.OpenFile("logger.log", os.O_APPEND|os.O_WRONLY, 0600)
+
+	if !FileExists("./logs/" + file) {
+		err := CreateFile(file)
+		if err != nil {
+			panic(err)
+		}
+	}
+
+	f, err := os.OpenFile("logs/"+file, os.O_APPEND|os.O_WRONLY, 0600)
 	if err != nil {
 		panic(err)
 	}
-	now := time.Now()
 
 	_, file, line, ok := runtime.Caller(1)
 
@@ -57,15 +72,24 @@ func FileExists(name string) bool {
 }
 
 func CreateFile(name string) error {
-	fo, err := os.Create(name)
+	file, err := os.Create("logs/" + name)
+	if err != nil {
+		return nil
+	}
+
+	defer func(file *os.File) {
+		err := file.Close()
+		if err != nil {
+
+		}
+	}(file)
+	return nil
+}
+
+func CreateFolder(name string) error {
+	err := os.Mkdir(name, 0755)
 	if err != nil {
 		return err
 	}
-	defer func() {
-		err := fo.Close()
-		if err != nil {
-			return
-		}
-	}()
 	return nil
 }
