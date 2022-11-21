@@ -1,7 +1,7 @@
 # Other
 
 .idea
-logger.log
+/logs
 
 # Database files
 
