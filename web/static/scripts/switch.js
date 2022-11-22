@@ -188,6 +188,8 @@ $(document).ready(async function() {
                                 $analyticsSwitchTogglerName.text("Off");
                                 $analyticsSwitch.removeAttr("checked");
 
+                                $("#analytics").remove();
+
                                 toast(data.message);
                             } else {
                                 toast("Failed to apply settings.");
