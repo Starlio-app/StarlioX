@@ -1,11 +1,14 @@
 package functions
 
 import (
+	"encoding/json"
 	"fmt"
 	"os"
 	"runtime"
 	"strings"
 	"time"
+
+	"github.com/rodkranz/fetch"
 )
 
 func Logger(text string) {
@@ -92,4 +95,29 @@ func CreateFolder(name string) error {
 		return err
 	}
 	return nil
+}
+
+func getDatabase() int {
+	client := fetch.NewDefault()
+	res, err := client.Get("http://localhost:3000/api/get/settings", nil)
+	if err != nil {
+		panic(err)
+	}
+
+	body, err := res.ToString()
+	if err != nil {
+		panic(err)
+	}
+
+	type DatabaseStruct struct {
+		Save_logg int `json:"save_logg"`
+	}
+
+	var Database DatabaseStruct
+	err = json.Unmarshal([]byte(body), &Database)
+	if err != nil {
+		panic(err)
+	}
+
+	return Database.Save_logg
 }

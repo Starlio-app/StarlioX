@@ -8,17 +8,26 @@ $(document).ready(async function() {
     const $loggingSwitch = $("#settings_saveLoggSwitch");
     const $loggingSwitchTogglerName = $("#settings_saveLoggTogglerName");
 
+    const $analyticsSwitch = $("#settings_analyticsSwitch");
+    const $analyticsSwitchTogglerName = $("#settings_analyticsTogglerName");
+
     getSettings().then((data) => {
-       if (data["wallpaper"] === 1) {
-           $wallpaperSwitch.attr("checked", "true");
-           $wallpaperSwitchTogglerName.text("On");
-       } else if (data["startup"] === 1) {
-           $startupSwitch.attr("checked", "true");
-           $startupSwitchTogglerName.text("On");
-       } else if (data["save_logg"] === 1) {
-           $loggingSwitch.attr("checked", "true");
-           $loggingSwitchTogglerName.text("On");
-       }
+        if (data["wallpaper"] === 1) {
+            $wallpaperSwitch.attr("checked", "true");
+            $wallpaperSwitchTogglerName.text("On");
+        }
+        if (data["startup"] === 1) {
+            $startupSwitch.attr("checked", "true");
+            $startupSwitchTogglerName.text("On");
+        }
+        if (data["save_logg"] === 1) {
+            $loggingSwitch.attr("checked", "true");
+            $loggingSwitchTogglerName.text("On");
+        }
+        if (data["analytics"] === 1) {
+            $analyticsSwitch.attr("checked", "true");
+            $analyticsSwitchTogglerName.text("On");
+        }
     });
 
     $wallpaperSwitch.click(async function() {
@@ -67,7 +76,6 @@ $(document).ready(async function() {
         })
     });
 
-
     $startupSwitch.click(async function() {
         $.ajax({
             url: "http://localhost:3000/api/get/settings",
@@ -106,7 +114,6 @@ $(document).ready(async function() {
 
                                 $startupSwitchTogglerName.text("On");
                                 $startupSwitch.attr("checked", "true");
-
                                 toast(data.message);
                             } else {
                                 toast("Failed to apply settings.");
@@ -161,7 +168,55 @@ $(document).ready(async function() {
                     });
                 }
             },
-        })
+        });
+    });
+
+    $analyticsSwitch.click(async function() {
+        $.ajax({
+            url: "http://localhost:3000/api/get/settings",
+            type: "GET",
+            success: function (data) {
+                if (data["analytics"] === 1) {
+                    $.ajax({
+                        url: "http://localhost:3000/api/update/settings",
+                        type: "POST",
+                        data: {
+                            "analytics": 0,
+                        },
+                        success: function (data) {
+                            if(data["status"]) {
+                                $analyticsSwitchTogglerName.text("Off");
+                                $analyticsSwitch.removeAttr("checked");
+
+                                toast(data.message);
+                            } else {
+                                toast("Failed to apply settings.");
+                            }
+                        },
+                    });
+                } else {
+                    $.ajax({
+                        url: "http://localhost:3000/api/update/settings",
+                        type: "POST",
+                        data: {
+                            "analytics": 1,
+                        },
+                        success: function (data) {
+                            if(data["status"]) {
+                                $analyticsSwitchTogglerName.text("On");
+                                $analyticsSwitch.attr("checked", "true");
+
+                                $("body").append("<script src='/static/scripts/analytics.js' type='module' id='analytics'></script>")
+
+                                toast(data.message);
+                            } else {
+                                toast("Failed to apply settings.");
+                            }
+                        },
+                    });
+                }
+            },
+        });
     });
 });
 

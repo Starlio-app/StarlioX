@@ -27,14 +27,17 @@ var SettingsGet = func(c *fiber.Ctx) error {
 		}
 	}(querySettings)
 
-	var startup, wallpaper, save_logg int
+	var startup, wallpaper, save_logg, analytics int
 
 	for querySettings.Next() {
-		err := querySettings.Scan(&startup, &wallpaper, &save_logg)
+		err := querySettings.Scan(&startup, &wallpaper, &save_logg, &analytics)
 		if err != nil {
 			functions.Logger(err.Error())
 		}
-		var data = map[string]interface{}{"startup": startup, "wallpaper": wallpaper, "save_logg": save_logg}
+		var data = map[string]interface{}{"startup": startup,
+			"wallpaper": wallpaper,
+			"save_logg": save_logg,
+			"analytics": analytics}
 		utils.Respond(c, data)
 	}
 
@@ -50,8 +53,9 @@ var SettingsUpdate = func(c *fiber.Ctx) error {
 	startup := c.FormValue("startup")
 	wallpaper := c.FormValue("wallpaper")
 	save_logg := c.FormValue("save_logg")
+	analytics := c.FormValue("analytics")
 
-	if startup == "" && wallpaper == "" && save_logg == "" {
+	if startup == "" && wallpaper == "" && save_logg == "" && analytics == "" {
 		utils.Respond(c, utils.Message(false, "All fields are required."))
 		return nil
 	}
@@ -76,6 +80,13 @@ var SettingsUpdate = func(c *fiber.Ctx) error {
 
 	if save_logg != "" {
 		_, err := db.Exec("UPDATE settings SET save_logg = ?", save_logg)
+		if err != nil {
+			functions.Logger(err.Error())
+		}
+	}
+
+	if analytics != "" {
+		_, err := db.Exec("UPDATE settings SET analytics = ?", analytics)
 		if err != nil {
 			functions.Logger(err.Error())
 		}

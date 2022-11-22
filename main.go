@@ -68,10 +68,6 @@ func main() {
 		return controllers.SettingsGet(c)
 	})
 
-	get.Get("/settings", func(c *fiber.Ctx) error {
-		return controllers.SettingsGet(c)
-	})
-
 	err := app.Listen(":3000")
 	if err != nil {
 		return
