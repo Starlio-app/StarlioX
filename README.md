@@ -5,14 +5,14 @@ and sets it as a background for your workspace.
 
 ---
 
-| Platform         	| Status      	| Latest version 	| Get it on                                                                           	|
-|------------------	|-------------	|----------------	|-------------------------------------------------------------------------------------	|
-| Windows          	| Available   	| 2.1            	| [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.1/EveryNasa.msi)    	|
-| Linux            	| Unsupported 	| 1.6            	| [Binary file](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa) 	|
-| Android          	| Available   	| 1.5.0          	| [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   	|
-| MacOS            	| Unavailable 	|                	|                                                                                     	|
-| iOS              	| Unavailable 	|                	|                                                                                     	|
-| Wallpaper Engine 	| Unsupported 	| 1.0            	| [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2884180886) 	|
+| Platform         	 | Status      	 | Latest version 	 | Get it on                                                                           	 |
+|--------------------|---------------|------------------|---------------------------------------------------------------------------------------|
+| Windows          	 | Available   	 | 2.2            	 | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.2/EveryNasa.msi)    	 |
+| Linux            	 | Unsupported 	 | 1.6            	 | [Binary file](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa) 	 |
+| Android          	 | Available   	 | 1.5.0          	 | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   	 |
+| MacOS            	 | Unavailable 	 | 	                | 	                                                                                     |
+| iOS              	 | Unavailable 	 | 	                | 	                                                                                     |
+| Wallpaper Engine 	 | Unsupported 	 | 1.0            	 | [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2884180886) 	 |
 
 ---
 
