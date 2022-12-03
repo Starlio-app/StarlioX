@@ -1,32 +1,44 @@
 .card {
-    border-radius: 2%;
-    min-width: 350px;
-    max-width: 400px;
-    height: 200px;
-    overflow: hidden;
-    margin: 10px;
     background-color: #131313;
+    border-radius: 34px;
+    width: 359px;
+    height: 237px;
+    overflow: hidden;
 }
 
 .header-row {
-    flex-wrap: wrap;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-around;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-gap: 40px;
+    padding: 10px;
+    margin-left: -100px;
 }
 
 .card-img-top {
-    object-fit: none;
-    object-position: center;
+    min-width: 120%;
+    min-height: 120%;
+
+}
+
+.card-img {
+    border-radius: 16px;
 }
 
 lottie-player {
     margin: 0 auto;
 }
 
+.modal-body,
+.modal-footer,
+.modal-header {
+    background-color: #212529;
+    color: white;
+}
+
 .modal-body p {
     font-family: 'Roboto', sans-serif;
+    margin-top: 16px;
 }
 
 .navbar {
