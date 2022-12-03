@@ -37,7 +37,7 @@ lottie-player {
 .shimmer {
     display: inline-block;
     color: grey;
-    -webkit-mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/370% 100%;
+    -webkit-mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/386% 100%;
     background-repeat: no-repeat;
     animation: shimmer 2.5s infinite;
     filter: blur(50px)
