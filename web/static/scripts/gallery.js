@@ -67,11 +67,9 @@ function wallpaper(data) {
         }
     }
 
-    //if all images are loaded delete class
     $(".card-img-top").on("load", function() {
         $(this).removeClass("shimmer");
     });
-
 
     let button_modal = document.querySelector(".header-row");
     button_modal.addEventListener("click", function (event) {
