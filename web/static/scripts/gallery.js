@@ -48,7 +48,7 @@ function wallpaper(data) {
             $(".header-row").append(`
                 <div class="card">
                     <a data-bs-toggle="modal" href="#WallpaperModal" role="button">
-                        <img src="${ids[id]['url']}" alt="${ids[id]['title']}" class="card-img-top" id="${id}">
+                        <img src="${ids[id]['url']}" alt="${ids[id]['title']}" class="card-img-top shimmer" id="${id}">
                     </a>
                 </div>
         `);
@@ -59,13 +59,18 @@ function wallpaper(data) {
                     <img src="http://localhost:3000/static/image/placeholder.png" 
                         data-src="https://img.youtube.com/vi/${ids[id]['url'].slice(30, 41)}/maxresdefault.jpg"
                         alt="${ids[id]['title']}" 
-                        class="card-img-top" 
+                        class="card-img-top shimmer" 
                         id="${id}"> 
                 </a>
             </div>
         `);
         }
     }
+
+    //if all images are loaded delete class
+    $(".card-img-top").on("load", function() {
+        $(this).removeClass("shimmer");
+    });
 
 
     let button_modal = document.querySelector(".header-row");
@@ -93,16 +98,17 @@ function wallpaper(data) {
         }
 
         let setWallpaper = document.querySelector("#setWallpaper");
-
         ids[id]['copyright'] = ids[id]['copyright'] === undefined ? "NASA" : ids[id]['copyright'];
 
+        let explanation = ids[id]['explanation'].length > 200 ? ids[id]['explanation'].slice(0, 200) + "..." : ids[id]['explanation'];
         if (ids[id]['media_type'] === "image") {
             title.innerHTML = `<h5 class="modal-title">${ids[id]['title']}</h5>`;
             img.innerHTML = `
                 <img src="${ids[id]['url']}" alt="${ids[id]['title']}" class="card-img">
                 <p><strong>Author:</strong> ${ids[id]['copyright']}</p>
                 <p><strong>Date of publication:</strong> ${ids[id]['date']}</p>
-                <p><strong>Explanation:</strong> ${ids[id]['explanation']}</p>
+                <p><strong>Explanation:</strong> ${explanation}</p>
+                <button type="button" class="show-more btn btn-primary" id="show-more">Show more</button>
             `;
 
             setWallpaper.addEventListener("click", function () {
@@ -120,13 +126,27 @@ function wallpaper(data) {
                 
                 <p><strong>Author:</strong> ${ids[id]['copyright']}</p>
                 <p><strong>Date of publication:</strong> ${ids[id]['date']}</p>
-                <p><strong>Explanation:</strong> ${ids[id]['explanation']}</p>
+                <p><strong>Explanation:</strong> ${explanation}</p>
+                <button type="button" class="show-more btn btn-primary" id="show-more">Show more</button>
             `;
 
             setWallpaper.addEventListener("click", function () {
                 wallpaperUpdate(`https://img.youtube.com/vi/${ids[id]['url'].slice(30, 41)}/maxresdefault.jpg`);
             });
         }
+
+
+        let showMore = document.querySelector("#show-more");
+        showMore.addEventListener("click", function () {
+            let explanation = document.querySelector(".modal-body p:nth-child(4)");
+            if(showMore.innerHTML === "Show more") {
+                explanation.innerHTML = `<strong>Explanation:</strong> ${ids[id]['explanation']}`;
+                showMore.innerHTML = "Show less";
+            } else {
+                explanation.innerHTML = explanation.innerHTML.slice(0, 200) + "...";
+                showMore.innerHTML = "Show more";
+            }
+        });
     });
 
     $(window).scroll(function () {

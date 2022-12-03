@@ -29,11 +29,31 @@ lottie-player {
     margin: 0 auto;
 }
 
-.modal-body,
-.modal-footer,
-.modal-header {
+.modal-content {
     background-color: #212529;
     color: white;
+}
+
+.shimmer {
+    display: inline-block;
+    color: grey;
+    -webkit-mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/370% 100%;
+    background-repeat: no-repeat;
+    animation: shimmer 2.5s infinite;
+    filter: blur(50px)
+}
+
+@keyframes shimmer {
+    100% {-webkit-mask-position: left}
+}
+
+#show-more {
+    background-color: #212529;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 10px;
+    margin: 10px;
 }
 
 .modal-body p {
