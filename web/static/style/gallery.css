@@ -30,13 +30,13 @@ lottie-player {
 }
 
 .modal-content {
-    background-color: #212529;
+    background-color: #131313;
     color: white;
 }
 
 .shimmer {
     display: inline-block;
-    color: grey;
+    color: #333333;
     -webkit-mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/386% 100%;
     background-repeat: no-repeat;
     animation: shimmer 2.5s infinite;
@@ -66,4 +66,27 @@ lottie-player {
     position: sticky;
     z-index: 100;
     top: 0;
+}
+
+#favorite {
+    width: 130px;
+    height: 130px;
+    margin: -17px;
+}
+
+#favorite:hover {
+    cursor: pointer;
+}
+
+#favorite:active {
+    transform: scale(0.9);
+}
+
+#setWallpaper:disabled {
+    cursor: unset;
+    transform: none;
+}
+
+.btn-close{
+    background-color: white;
 }
