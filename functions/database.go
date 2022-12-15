@@ -11,14 +11,7 @@ func Database() {
 		Logger(err.Error())
 	}
 
-	var existsSettings bool
-	err = db.QueryRow("SELECT EXISTS(SELECT name FROM sqlite_master WHERE type='table' AND name='settings')").Scan(&existsSettings)
-
-	if err != nil {
-		Logger(err.Error())
-	}
-
-	if existsSettings == false {
+	if !TableExists(db, "settings") {
 		sqlTable := `
 			CREATE TABLE IF NOT EXISTS settings (
 			    startup INTEGER DEFAULT 0,
@@ -42,4 +35,41 @@ func Database() {
 			Logger(err.Error())
 		}
 	}
+
+	if !TableExists(db, "favorite") {
+		sqlTable := `
+			CREATE TABLE IF NOT EXISTS favorite (
+			    title TEXT,
+			    explanation TEXT,
+			    copyright TEXT,
+			    date TEXT,
+			    url TEXT,
+			    hdurl TEXT,
+			    media_type TEXT
+			);`
+
+		_, err = db.Exec(sqlTable)
+		if err != nil {
+			Logger(err.Error())
+		}
+	}
+}
+
+func GetDatabase() *sql.DB {
+	db, err := sql.Open("sqlite3", "EveryNasa.db")
+	if err != nil {
+		Logger(err.Error())
+	}
+
+	return db
+}
+
+func TableExists(db *sql.DB, name string) bool {
+	var exists bool
+	err := db.QueryRow("SELECT EXISTS(SELECT name FROM sqlite_master WHERE type='table' AND name=?)", name).Scan(&exists)
+	if err != nil {
+		Logger(err.Error())
+	}
+
+	return exists
 }
