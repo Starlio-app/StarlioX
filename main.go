@@ -7,9 +7,11 @@ import (
 	"github.com/getlantern/systray"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
+	"github.com/skratchdot/open-golang/open"
 )
 
 func main() {
+	go open.Run("http://localhost:3000")
 	go functions.Database()
 	go systray.Run(functions.Tray, functions.Quit)
 	go functions.StartWallpaper()
@@ -43,11 +45,16 @@ func main() {
 	app.Get("/about", func(c *fiber.Ctx) error {
 		return page.About(c)
 	})
+	app.Get("/favorite", func(c *fiber.Ctx) error {
+		return page.Favorite(c)
+	})
 
 	api := app.Group("/api")
 
 	update := api.Group("/update")
 	get := api.Group("/get")
+	add := api.Group("/add")
+	del := api.Group("/del")
 	create := api.Group("/create")
 
 	update.Post("/settings", func(c *fiber.Ctx) error {
@@ -66,6 +73,18 @@ func main() {
 
 	get.Get("/settings", func(c *fiber.Ctx) error {
 		return controllers.SettingsGet(c)
+	})
+
+	get.Get("/favorites", func(c *fiber.Ctx) error {
+		return controllers.GetFavorites(c)
+	})
+
+	add.Post("/favorite", func(c *fiber.Ctx) error {
+		return controllers.AddFavorite(c)
+	})
+
+	del.Post("/favorite", func(c *fiber.Ctx) error {
+		return controllers.DeleteFavorite(c)
 	})
 
 	err := app.Listen(":3000")
