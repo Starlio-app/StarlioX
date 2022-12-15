@@ -34,10 +34,13 @@ var SettingsGet = func(c *fiber.Ctx) error {
 		if err != nil {
 			functions.Logger(err.Error())
 		}
-		var data = map[string]interface{}{"startup": startup,
+
+		var data = map[string]interface{}{
+			"startup":   startup,
 			"wallpaper": wallpaper,
 			"save_logg": save_logg,
 			"analytics": analytics}
+
 		utils.Respond(c, data)
 	}
 
