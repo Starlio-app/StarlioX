@@ -23,3 +23,14 @@
 #createLabelButton {
     margin-left: -17.6em;
 }
+
+.form-check-input {
+    position: relative;
+    left: 5px;
+    font-size: 18px;
+}
+
+.form-check-label {
+    margin-left: 5px;
+    margin-top: 2.2px;
+}
