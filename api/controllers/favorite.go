@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"database/sql"
-	"fmt"
 	"github.com/Redume/EveryNasa/api/utils"
 	"github.com/Redume/EveryNasa/functions"
 	"github.com/gofiber/fiber/v2"
@@ -63,6 +62,7 @@ var GetFavorites = func(c *fiber.Ctx) error {
 				functions.Logger(err.Error())
 			}
 		}(queryFavorite)
+
 		var favorites []Favorite
 		for queryFavorite.Next() {
 			err := queryFavorite.Scan(&title, &explanation, &date, &url, &hdurl, &media_type)
@@ -92,8 +92,6 @@ var AddFavorite = func(c *fiber.Ctx) error {
 	url := c.FormValue("url")
 	hdurl := c.FormValue("hdurl")
 	media_type := c.FormValue("media_type")
-
-	fmt.Println(title, explanation, date, url, hdurl, media_type)
 
 	if title == "" && explanation == "" && date == "" && url == "" && hdurl == "" && media_type == "" {
 		utils.Respond(c, utils.Message(false, "All fields are required"))
