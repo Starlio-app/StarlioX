@@ -59,7 +59,7 @@ func Logger(text string) {
 		lineString = fmt.Sprintf("%d", line)
 	}
 
-	_, err = f.Write([]byte(now.Format("Mon Jan 2 15:04:05 2006") + " | " + text + " [" + file + "] [" + lineString + "]\n"))
+	_, err = f.Write([]byte(now.Format("15:04:05") + " | " + text + " [" + file + "] [" + lineString + "]\n"))
 	if err != nil {
 		panic(err)
 	}
