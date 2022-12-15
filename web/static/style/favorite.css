@@ -1,0 +1,9 @@
+body {
+    background-color: #131313;
+}
+
+lottie-player {
+    width: 30%;
+    height: 30%;
+    margin-top: -10%;
+}
