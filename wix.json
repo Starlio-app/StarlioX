@@ -1,0 +1,49 @@
+{
+  "product": "EveryNasa",
+  "company": "Redume",
+  "license": "LICENSE",
+  "upgrade-code": "4165e562-ab60-4ac2-b27b-df2d62548dd9",
+  "files": {
+    "guid": "c68b679d-8199-4036-8ead-d509fad132c8",
+    "items": [
+      "EveryNasa.exe"
+    ]
+  },
+  "directories": [
+    "api",
+    "web",
+    "functions"
+  ],
+  "env": {
+    "guid": "24554370-7366-4725-8509-7aebb35da25a",
+    "vars": [
+      {
+        "name": "PATH",
+        "value": "[INSTALLDIR]",
+        "permanent": "no",
+        "system": "no",
+        "action": "set",
+        "part": "last"
+      }
+    ]
+  },
+  "shortcuts": {
+    "guid": "f2fb0dac-ddda-4c8e-bba4-3eb377150cde",
+    "items": [
+      {
+        "name": "EveryNasa",
+        "description": "Automatic space wallpaper from Nasa",
+        "target": "[INSTALLDIR]EveryNasa.exe",
+        "wdir": "INSTALLDIR",
+        "arguments": "",
+        "icon": "web/static/image/icons/icon.ico"
+      }
+    ]
+  },
+  "choco": {
+    "description": "Automatic space wallpaper from Nasa",
+    "project-url": "https://github.com/Redume/EveryNasa",
+    "tags": "Wallpaper, Nasa, go, auto-wallpaper",
+    "license-url": "https://github.com/Redume/EveryNasa/blob/main/LICENSE"
+  }
+}
