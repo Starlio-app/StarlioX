@@ -11,7 +11,7 @@
       "0409": {
         "identity": {
           "name": "EveryNasa",
-          "version": "2.0"
+          "version": "2.3.1"
         },
         "description": "Automatic space wallpaper from Nasa",
         "minimum-os": "win10",
@@ -35,22 +35,22 @@
     "#1": {
       "0000": {
         "fixed": {
-          "file_version": "2.0",
-          "product_version": "2.0"
+          "file_version": "2.3.1",
+          "product_version": "2.3.1"
         },
         "info": {
           "0409": {
             "Comments": "",
             "CompanyName": "Redume",
             "FileDescription": "",
-            "FileVersion": "2.0",
+            "FileVersion": "3.2.1",
             "InternalName": "EveryNasa",
             "LegalCopyright": "Redume",
             "LegalTrademarks": "",
             "OriginalFilename": "EveryNasa.exe",
             "PrivateBuild": "",
             "ProductName": "EveryNasa",
-            "ProductVersion": "2.0",
+            "ProductVersion": "2.3.1",
             "SpecialBuild": ""
           }
         }
