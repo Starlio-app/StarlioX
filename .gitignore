@@ -13,7 +13,3 @@
 *.exe
 *.msi
 *.syso
-winres/*
-wix/*
-wix.json
-
