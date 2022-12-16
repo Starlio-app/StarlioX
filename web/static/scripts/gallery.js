@@ -109,7 +109,8 @@ function wallpaperLoad(data) {
 
         ids[id]['copyright'] = ids[id]['copyright'] === undefined ? "NASA" : ids[id]['copyright'];
 
-        let explanation = ids[id]['explanation'].length > 200 ? ids[id]['explanation'].slice(0, 200) + "..." : ids[id]['explanation'];
+        const explanation = ids[id]['explanation'].length > 200 ? ids[id]['explanation'].slice(0, 200) + "..." : ids[id]['explanation'];
+        console.log(explanation);
         if (ids[id]['media_type'] === "image") {
             title.innerHTML = `<h5 class="modal-title">${ids[id]['title']}</h5>`;
             img.innerHTML = `
@@ -192,7 +193,7 @@ function wallpaperLoad(data) {
                 explanation.innerHTML = `<strong>Explanation:</strong> ${ids[id]['explanation']}`;
                 showMore.innerHTML = "Show less";
             } else {
-                explanation.innerHTML = explanation.innerHTML.slice(0, 200) + "...";
+                explanation.innerHTML = `<strong>Explanation:</strong> ${ids[id]['explanation'].length > 200 ? ids[id]['explanation'].slice(0, 200) + "..." : ids[id]['explanation']}`;
                 showMore.innerHTML = "Show more";
             }
         });
