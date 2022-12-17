@@ -109,8 +109,10 @@ function wallpaperLoad(data) {
 
         ids[id]['copyright'] = ids[id]['copyright'] === undefined ? "NASA" : ids[id]['copyright'];
 
-        const explanation = ids[id]['explanation'].length > 200 ? ids[id]['explanation'].slice(0, 200) + "..." : ids[id]['explanation'];
-        console.log(explanation);
+        const explanation = ids[id]['explanation'].length > 200 ?
+            ids[id]['explanation'].slice(0, 200) + "..." :
+            ids[id]['explanation'];
+
         if (ids[id]['media_type'] === "image") {
             title.innerHTML = `<h5 class="modal-title">${ids[id]['title']}</h5>`;
             img.innerHTML = `
