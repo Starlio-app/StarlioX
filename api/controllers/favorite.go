@@ -13,13 +13,14 @@ var GetFavorites = func(c *fiber.Ctx) error {
 	type Favorite struct {
 		Title       string `json:"title"`
 		Explanation string `json:"explanation"`
+		Copyright   string `json:"copyright"`
 		Date        string `json:"date"`
 		URL         string `json:"url"`
 		HDURL       string `json:"hdurl"`
 		MediaType   string `json:"media_type"`
 	}
 
-	var title, explanation, date, url, hdurl, media_type string
+	var title, explanation, copyright, date, url, hdurl, media_type string
 	db := functions.GetDatabase()
 
 	if FavoriteTitle != "" {
@@ -36,7 +37,7 @@ var GetFavorites = func(c *fiber.Ctx) error {
 		}(queryFavorites)
 
 		for queryFavorites.Next() {
-			err := queryFavorites.Scan(&title, &explanation, &date, &url, &hdurl, &media_type)
+			err := queryFavorites.Scan(&title, &explanation, &copyright, &date, &url, &hdurl, &media_type)
 			if err != nil {
 				functions.Logger(err.Error())
 			}
@@ -44,6 +45,7 @@ var GetFavorites = func(c *fiber.Ctx) error {
 			return c.JSON(fiber.Map{
 				"title":       title,
 				"explanation": explanation,
+				"copyright":   copyright,
 				"date":        date,
 				"url":         url,
 				"hdurl":       hdurl,
@@ -65,7 +67,7 @@ var GetFavorites = func(c *fiber.Ctx) error {
 
 		var favorites []Favorite
 		for queryFavorite.Next() {
-			err := queryFavorite.Scan(&title, &explanation, &date, &url, &hdurl, &media_type)
+			err := queryFavorite.Scan(&title, &explanation, &copyright, &date, &url, &hdurl, &media_type)
 			if err != nil {
 				functions.Logger(err.Error())
 			}
@@ -73,6 +75,7 @@ var GetFavorites = func(c *fiber.Ctx) error {
 			favorites = append(favorites, Favorite{
 				Title:       title,
 				Explanation: explanation,
+				Copyright:   copyright,
 				Date:        date,
 				URL:         url,
 				HDURL:       hdurl,
@@ -88,6 +91,7 @@ var GetFavorites = func(c *fiber.Ctx) error {
 var AddFavorite = func(c *fiber.Ctx) error {
 	title := c.FormValue("title")
 	explanation := c.FormValue("explanation")
+	copyright := c.FormValue("copyright")
 	date := c.FormValue("date")
 	url := c.FormValue("url")
 	hdurl := c.FormValue("hdurl")
@@ -100,9 +104,10 @@ var AddFavorite = func(c *fiber.Ctx) error {
 
 	db := functions.GetDatabase()
 
-	_, err := db.Exec("INSERT INTO favorite (title, explanation, date, url, hdurl, media_type) VALUES (?, ?, ?, ?, ?, ?)",
+	_, err := db.Exec("INSERT INTO favorite (title, explanation, copyright, date, url, hdurl, media_type) VALUES (?, ?, ?, ?, ?, ?, ?)",
 		title,
 		explanation,
+		copyright,
 		date,
 		url,
 		hdurl,
