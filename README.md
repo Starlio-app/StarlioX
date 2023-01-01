@@ -93,7 +93,7 @@ go-msi make -msi EveryNasa.msi --version <version> -s wix
 This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details.
 
 ```
-Copyright 2023 Redume
+Copyright 2022-2023 Redume
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
