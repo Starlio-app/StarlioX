@@ -20,7 +20,7 @@ and sets it as a background for your workspace.
 |--------------------|---------------|--------------------|-----------------------------------------------------------------------------------------|
 | Windows          	 | Available   	 | 2.3.1            	 | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.3.1/EveryNasa.msi)    	 |
 | Linux            	 | Unsupported 	 | 1.6            	   | [Binary file](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa) 	   |
-| Android          	 | Available   	 | 1.7.0          	   | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   	   |
+| Android          	 | Available   	 | 1.7.1          	   | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   	   |
 | MacOS            	 | Unavailable 	 | 	                  | 	                                                                                       |
 | iOS              	 | Unavailable 	 | 	                  | 	                                                                                       |
 | Wallpaper Engine 	 | Unsupported 	 | 1.0            	   | [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2884180886) 	   |
