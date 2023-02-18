@@ -90,22 +90,20 @@ go-msi make -msi EveryNasa.msi --version <version> -s wix
 ---
 
 ### License
-This project is licensed under the Apache-2.0 License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the GPLv3 - see the [LICENSE](LICENSE) file for details.
 
 ```
-Copyright 2022-2023 Redume
+  If the program does terminal interaction, make it output a short
+notice like this when it starts in an interactive mode:
 
-Licensed under the Apache License, Version 2.0 (the "License");
-you may not use this file except in compliance with the License.
-You may obtain a copy of the License at
+    EveryNasa  Copyright (C) 2023-2023 Redume
+    This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
+    This is free software, and you are welcome to redistribute it
+    under certain conditions; type `show c' for details.
 
-   http://www.apache.org/licenses/LICENSE-2.0
-
-Unless required by applicable law or agreed to in writing, software
-distributed under the License is distributed on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-See the License for the specific language governing permissions and
-limitations under the License.
+The hypothetical commands `show w' and `show c' should show the appropriate
+parts of the General Public License.  Of course, your program's commands
+might be different; for a GUI interface, you would use an "about box".
 ```
 
 ### Third-party library licenses
