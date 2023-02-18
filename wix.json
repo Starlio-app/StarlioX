@@ -6,14 +6,14 @@
   "files": {
     "guid": "c68b679d-8199-4036-8ead-d509fad132c8",
     "items": [
-      "EveryNasa.exe"
+      "EveryNasa.exe",
+      "LICENSE"
     ]
   },
   "directories": [
     "api",
     "web",
-    "functions",
-    "LICENSE"
+    "functions"
   ],
   "env": {
     "guid": "24554370-7366-4725-8509-7aebb35da25a",
