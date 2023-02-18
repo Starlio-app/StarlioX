@@ -18,7 +18,7 @@ and sets it as a background for your workspace.
 
 | Platform         	 | Status      	 | Latest version 	   | Get it on                                                                           	   |
 |--------------------|---------------|--------------------|-----------------------------------------------------------------------------------------|
-| Windows          	 | Available   	 | 2.3.1            	 | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.3.1/EveryNasa.msi)    	 |
+| Windows          	 | Available   	 | 2.3.2            	 | [.msi](https://github.com/Redume/EveryNasa/releases/download/v2.3.1/EveryNasa.msi)    	 |
 | Linux            	 | Unsupported 	 | 1.6            	   | [Binary file](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa) 	   |
 | Android          	 | Available   	 | 1.7.4          	   | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa)   	   |
 | MacOS            	 | Unavailable 	 | 	                  | 	                                                                                       |
@@ -96,7 +96,7 @@ This project is licensed under the GPLv3 - see the [LICENSE](LICENSE) file for d
   If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
-    EveryNasa  Copyright (C) 2023-2023 Redume
+    EveryNasa Copyright (C) 2023-2023 Redume
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.
