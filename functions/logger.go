@@ -14,7 +14,7 @@ import (
 func Logger(text string) {
 	now := time.Now()
 
-	file := string(now.Format("01.02.2006")) + ".log"
+	file := string(now.Format("02.01.2006")) + ".log"
 
 	if getDatabase() == 0 {
 		return
