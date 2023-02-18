@@ -11,7 +11,7 @@
       "0409": {
         "identity": {
           "name": "EveryNasa",
-          "version": "2.3.1"
+          "version": "2.3.2"
         },
         "description": "Automatic space wallpaper from Nasa",
         "minimum-os": "win10",
@@ -35,8 +35,8 @@
     "#1": {
       "0000": {
         "fixed": {
-          "file_version": "2.3.1",
-          "product_version": "2.3.1"
+          "file_version": "2.3.2",
+          "product_version": "2.3.2"
         },
         "info": {
           "0409": {
@@ -50,7 +50,7 @@
             "OriginalFilename": "EveryNasa.exe",
             "PrivateBuild": "",
             "ProductName": "EveryNasa",
-            "ProductVersion": "2.3.1",
+            "ProductVersion": "2.3.2",
             "SpecialBuild": ""
           }
         }

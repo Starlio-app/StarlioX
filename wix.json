@@ -12,7 +12,8 @@
   "directories": [
     "api",
     "web",
-    "functions"
+    "functions",
+    "LICENSE"
   ],
   "env": {
     "guid": "24554370-7366-4725-8509-7aebb35da25a",
