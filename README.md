@@ -19,16 +19,15 @@ and sets it as a background for your workspace.
 
 ---
 
-| Platform         | Status      | Latest version | Get in on                                                                                                                                       | Branch                                                                        |
+| Platform         | Status      | Latest version | Get in on                                                                                                                                       | Branche                                                                       |
 |------------------|-------------|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| Windows          | Support     |                | [Github](https://github.com/Redume/EveryNasa/releases/tag/v2.3.2)                                                                               | [main](https://github.com/Redume/EveryNasa)                                   |
-| Linux            | Unsupport   |                | [Github](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa)                                                                  |                                                                               |
-| Android          | Support     |                | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa) / [RuStore](https://apps.rustore.ru/app/ru.murzify.everynasa) |                                                                               |
+| Windows          | Support     | 2.3.2          | [Github](https://github.com/Redume/EveryNasa/releases/tag/v2.3.2)                                                                               | [main](https://github.com/Redume/EveryNasa)                                   |
+| Linux            | Unsupport   | 1.6            | [Github](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa)                                                                  |                                                                               |
+| Android          | Support     | 1.8.1          | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa) / [RuStore](https://apps.rustore.ru/app/ru.murzify.everynasa) |                                                                               |
 | MacOS            | Unavailable |                |                                                                                                                                                 |                                                                               |
 | iOS              | Unavailable |                |                                                                                                                                                 |                                                                               |
-| Wallpaper Engine | Support     | 1.0            | [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2884180886)                                                             | [wallpaper-engine](https://github.com/Redume/EveryNasa/tree/wallpaper-engine) |
+| Wallpaper Engine | Support     |       1.0      | [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2884180886)                                                             | [wallpaper-engine](https://github.com/Redume/EveryNasa/tree/wallpaper-engine) |
 
----
 
 ### Solution or answers to possible problems
 Any bugs / problems that are not covered by these questions, please open an [issue](https://github.com/Redume/EveryNasa/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug)
