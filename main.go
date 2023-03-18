@@ -2,8 +2,7 @@ package main
 
 import (
 	"github.com/Redume/EveryNasa/api/controllers"
-	"github.com/Redume/EveryNasa/functions"
-	"github.com/Redume/EveryNasa/web/page"
+	"github.com/Redume/EveryNasa/utils"
 	"github.com/getlantern/systray"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"
@@ -12,11 +11,12 @@ import (
 
 func main() {
 	go open.Run("http://localhost:3000")
-	go functions.Database()
-	go systray.Run(functions.Tray, functions.Quit)
-	go functions.StartWallpaper()
+	go utils.Database()
+	go systray.Run(utils.Tray, utils.Quit)
+	go utils.StartWallpaper()
 
 	app := fiber.New()
+
 	app = fiber.New(fiber.Config{
 		ErrorHandler: func(ctx *fiber.Ctx, err error) error {
 			code := fiber.StatusInternalServerError
@@ -37,16 +37,26 @@ func main() {
 	app.Use(cors.New())
 
 	app.Get("/", func(c *fiber.Ctx) error {
-		return page.Gallery(c)
+		con := utils.Connected()
+		if con == false {
+			return c.SendFile("./web/errors/500.html")
+		}
+
+		return c.SendFile("./web/page/gallery.html")
 	})
 	app.Get("/settings", func(c *fiber.Ctx) error {
-		return page.Settings(c)
+		con := utils.Connected()
+		if con == false {
+			return c.SendFile("./web/errors/500.html")
+		}
+
+		return c.SendFile("./web/page/settings.html")
 	})
 	app.Get("/about", func(c *fiber.Ctx) error {
-		return page.About(c)
+		return c.SendFile("./web/page/about.html")
 	})
 	app.Get("/favorite", func(c *fiber.Ctx) error {
-		return page.Favorite(c)
+		return c.SendFile("./web/page/favorite.html")
 	})
 
 	api := app.Group("/api")
