@@ -2,8 +2,7 @@ package controllers
 
 import (
 	"database/sql"
-	"github.com/Redume/EveryNasa/api/utils"
-	"github.com/Redume/EveryNasa/functions"
+	"github.com/Redume/EveryNasa/utils"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -21,25 +20,25 @@ var GetFavorites = func(c *fiber.Ctx) error {
 	}
 
 	var title, explanation, copyright, date, url, hdurl, media_type string
-	db := functions.GetDatabase()
+	db := utils.GetDatabase()
 
 	if FavoriteTitle != "" {
 		queryFavorites, err := db.Query("SELECT * FROM favorite WHERE title LIKE ?", FavoriteTitle)
 		if err != nil {
-			functions.Logger(err.Error())
+			utils.Logger(err.Error())
 		}
 
 		defer func(query *sql.Rows) {
 			err := query.Close()
 			if err != nil {
-				functions.Logger(err.Error())
+				utils.Logger(err.Error())
 			}
 		}(queryFavorites)
 
 		for queryFavorites.Next() {
 			err := queryFavorites.Scan(&title, &explanation, &copyright, &date, &url, &hdurl, &media_type)
 			if err != nil {
-				functions.Logger(err.Error())
+				utils.Logger(err.Error())
 			}
 
 			return c.JSON(fiber.Map{
@@ -55,13 +54,13 @@ var GetFavorites = func(c *fiber.Ctx) error {
 	} else {
 		queryFavorite, err := db.Query("SELECT * FROM favorite")
 		if err != nil {
-			functions.Logger(err.Error())
+			utils.Logger(err.Error())
 		}
 
 		defer func(query *sql.Rows) {
 			err := query.Close()
 			if err != nil {
-				functions.Logger(err.Error())
+				utils.Logger(err.Error())
 			}
 		}(queryFavorite)
 
@@ -69,7 +68,7 @@ var GetFavorites = func(c *fiber.Ctx) error {
 		for queryFavorite.Next() {
 			err := queryFavorite.Scan(&title, &explanation, &copyright, &date, &url, &hdurl, &media_type)
 			if err != nil {
-				functions.Logger(err.Error())
+				utils.Logger(err.Error())
 			}
 
 			favorites = append(favorites, Favorite{
@@ -102,7 +101,7 @@ var AddFavorite = func(c *fiber.Ctx) error {
 		return nil
 	}
 
-	db := functions.GetDatabase()
+	db := utils.GetDatabase()
 
 	_, err := db.Exec("INSERT INTO favorite (title, explanation, copyright, date, url, hdurl, media_type) VALUES (?, ?, ?, ?, ?, ?, ?)",
 		title,
@@ -114,7 +113,7 @@ var AddFavorite = func(c *fiber.Ctx) error {
 		media_type)
 
 	if err != nil {
-		functions.Logger(err.Error())
+		utils.Logger(err.Error())
 	}
 
 	utils.Respond(c, utils.Message(true, "Favorite added"))
@@ -124,11 +123,11 @@ var AddFavorite = func(c *fiber.Ctx) error {
 var DeleteFavorite = func(c *fiber.Ctx) error {
 	title := c.FormValue("title")
 
-	db := functions.GetDatabase()
+	db := utils.GetDatabase()
 
 	_, err := db.Exec("DELETE FROM favorite WHERE title = ?", title)
 	if err != nil {
-		functions.Logger(err.Error())
+		utils.Logger(err.Error())
 	}
 
 	utils.Respond(c, utils.Message(true, "Favorite deleted"))

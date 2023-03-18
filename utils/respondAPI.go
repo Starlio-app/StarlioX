@@ -3,7 +3,6 @@ package utils
 import (
 	"encoding/json"
 
-	"github.com/Redume/EveryNasa/functions"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -15,6 +14,6 @@ func Respond(c *fiber.Ctx, data map[string]interface{}) {
 	c.Set("Content-Type", "application/json")
 	err := json.NewEncoder(c).Encode(data)
 	if err != nil {
-		functions.Logger(err.Error())
+		Logger(err.Error())
 	}
 }

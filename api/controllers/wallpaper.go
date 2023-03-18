@@ -1,8 +1,7 @@
 package controllers
 
 import (
-	"github.com/Redume/EveryNasa/api/utils"
-	"github.com/Redume/EveryNasa/functions"
+	"github.com/Redume/EveryNasa/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/reujab/wallpaper"
 )
@@ -17,7 +16,7 @@ var WallpaperUpdate = func(c *fiber.Ctx) error {
 
 	err := wallpaper.SetFromURL(url)
 	if err != nil {
-		functions.Logger(err.Error())
+		utils.Logger(err.Error())
 		utils.Respond(c, utils.Message(false, "An error occurred while setting the wallpaper"))
 		return nil
 	}

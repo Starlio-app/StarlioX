@@ -6,8 +6,7 @@ import (
 	"os/user"
 	"strings"
 
-	"github.com/Redume/EveryNasa/api/utils"
-	"github.com/Redume/EveryNasa/functions"
+	"github.com/Redume/EveryNasa/utils"
 )
 
 var Startup = func(c *fiber.Ctx) error {
@@ -32,19 +31,19 @@ var Startup = func(c *fiber.Ctx) error {
 var SetStartup = func(c *fiber.Ctx) error {
 	u, err := user.Current()
 	if err != nil {
-		functions.Logger(err.Error())
+		utils.Logger(err.Error())
 	}
 
 	dir, err := os.Getwd()
 	if err != nil {
-		functions.Logger(err.Error())
+		utils.Logger(err.Error())
 	}
 
 	dir = strings.Replace(dir, "\\", "\\\\", -1) + "\\EveryNasa.exe"
 
-	err = functions.CreateLnk(dir, strings.Replace(u.HomeDir, "\\", "\\\\", -1)+"\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\EveryNasa.lnk")
+	err = utils.CreateLnk(dir, strings.Replace(u.HomeDir, "\\", "\\\\", -1)+"\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\EveryNasa.lnk")
 	if err != nil {
-		functions.Logger(err.Error())
+		utils.Logger(err.Error())
 	}
 
 	utils.Respond(c, utils.Message(true, "The settings have been applied successfully."))
@@ -54,12 +53,12 @@ var SetStartup = func(c *fiber.Ctx) error {
 var RemoveStartup = func(c *fiber.Ctx) error {
 	u, err := user.Current()
 	if err != nil {
-		functions.Logger(err.Error())
+		utils.Logger(err.Error())
 	}
 
 	err = os.Remove(strings.Replace(u.HomeDir, "\\", "\\\\", -1) + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\EveryNasa.lnk")
 	if err != nil {
-		functions.Logger(err.Error())
+		utils.Logger(err.Error())
 	}
 
 	utils.Respond(c, utils.Message(true, "The settings have been applied successfully."))

@@ -1,4 +1,4 @@
-package functions
+package utils
 
 import (
 	"database/sql"
@@ -16,8 +16,7 @@ func Database() {
 			CREATE TABLE IF NOT EXISTS settings (
 			    startup INTEGER DEFAULT 0,
 			    wallpaper INTEGER DEFAULT 0,
-			    save_logg INTEGER DEFAULT 1,
-				analytics INTEGER DEFAULT 1
+			    save_logg INTEGER DEFAULT 1	                                    
 			);`
 
 		_, err = db.Exec(sqlTable)
@@ -25,12 +24,12 @@ func Database() {
 			Logger(err.Error())
 		}
 
-		stmt, err := db.Prepare("INSERT INTO settings(startup, wallpaper, save_logg, analytics) values(?,?,?,?)")
+		stmt, err := db.Prepare("INSERT INTO settings(startup, wallpaper, save_logg) values(?,?,?)")
 		if err != nil {
 			Logger(err.Error())
 		}
 
-		_, err = stmt.Exec(0, 0, 1, 1)
+		_, err = stmt.Exec(0, 0, 1)
 		if err != nil {
 			Logger(err.Error())
 		}
