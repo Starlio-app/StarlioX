@@ -8,9 +8,6 @@ $(document).ready(async function() {
     const $loggingSwitch = $("#settings_saveLoggSwitch");
     const $loggingSwitchTogglerName = $("#settings_saveLoggTogglerName");
 
-    const $analyticsSwitch = $("#settings_analyticsSwitch");
-    const $analyticsSwitchTogglerName = $("#settings_analyticsTogglerName");
-
     getSettings().then((data) => {
         if (data["wallpaper"] === 1) {
             $wallpaperSwitch.attr("checked", "true");
@@ -24,13 +21,9 @@ $(document).ready(async function() {
             $loggingSwitch.attr("checked", "true");
             $loggingSwitchTogglerName.text("On");
         }
-        if (data["analytics"] === 1) {
-            $analyticsSwitch.attr("checked", "true");
-            $analyticsSwitchTogglerName.text("On");
-        }
     });
 
-    $wallpaperSwitch.click(async function() {
+    $wallpaperSwitch.click(async function () {
         $.ajax({
             url: "http://localhost:3000/api/get/settings",
             type: "GET",
@@ -43,7 +36,7 @@ $(document).ready(async function() {
                             "wallpaper": 0,
                         },
                         success: function (data) {
-                            if(data["status"]) {
+                            if (data["status"]) {
                                 $wallpaperSwitchTogglerName.text("Off");
                                 $wallpaperSwitch.removeAttr("checked");
 
@@ -61,7 +54,7 @@ $(document).ready(async function() {
                             "wallpaper": 1,
                         },
                         success: function (data) {
-                            if(data["status"]) {
+                            if (data["status"]) {
                                 $wallpaperSwitchTogglerName.text("On");
                                 $wallpaperSwitch.attr("checked", "true");
 
@@ -76,7 +69,7 @@ $(document).ready(async function() {
         })
     });
 
-    $startupSwitch.click(async function() {
+    $startupSwitch.click(async function () {
         $.ajax({
             url: "http://localhost:3000/api/get/settings",
             type: "GET",
@@ -125,7 +118,7 @@ $(document).ready(async function() {
         });
     });
 
-    $loggingSwitch.click(async function() {
+    $loggingSwitch.click(async function () {
         $.ajax({
             url: "http://localhost:3000/api/get/settings",
             type: "GET",
@@ -138,7 +131,7 @@ $(document).ready(async function() {
                             "save_logg": 0,
                         },
                         success: function (data) {
-                            if(data["status"]) {
+                            if (data["status"]) {
                                 $loggingSwitchTogglerName.text("Off");
                                 $loggingSwitch.removeAttr("checked");
 
@@ -156,7 +149,7 @@ $(document).ready(async function() {
                             "save_logg": 1,
                         },
                         success: function (data) {
-                            if(data["status"]) {
+                            if (data["status"]) {
                                 $loggingSwitchTogglerName.text("On");
                                 $loggingSwitch.attr("checked", "true");
 
@@ -170,61 +163,7 @@ $(document).ready(async function() {
             },
         });
     });
-
-    $analyticsSwitch.click(async function() {
-        $.ajax({
-            url: "http://localhost:3000/api/get/settings",
-            type: "GET",
-            success: function (data) {
-                if (data["analytics"] === 1) {
-                    $.ajax({
-                        url: "http://localhost:3000/api/update/settings",
-                        type: "POST",
-                        data: {
-                            "analytics": 0,
-                        },
-                        success: function (data) {
-                            if(data["status"]) {
-                                $analyticsSwitchTogglerName.text("Off");
-                                $analyticsSwitch.removeAttr("checked");
-
-                                $("#analytics").remove();
-
-                                toast(data.message);
-                            } else {
-                                toast("Failed to apply settings.");
-                            }
-                        },
-                    });
-                } else {
-                    $.ajax({
-                        url: "http://localhost:3000/api/update/settings",
-                        type: "POST",
-                        data: {
-                            "analytics": 1,
-                        },
-                        success: function (data) {
-                            if(data["status"]) {
-                                $analyticsSwitchTogglerName.text("On");
-                                $analyticsSwitch.attr("checked", "true");
-
-                                $("body").append("<script src='/static/scripts/analytics.js' type='module' id='analytics'></script>")
-
-                                toast(data.message);
-                            } else {
-                                toast("Failed to apply settings.");
-                            }
-                        },
-                    });
-                }
-            },
-        });
-    });
 });
-
-/**
- * @param {String} message
- */
 
 function toast(message) {
     if (message === null) {
@@ -236,10 +175,6 @@ function toast(message) {
     let toast = new bootstrap.Toast(toastLiveExample);
     toast.show();
 }
-
-/**
- * @param {Number} i
- */
 
 function editStartup(i) {
     if (i !== 1 || i !== 0 || i === null) {
