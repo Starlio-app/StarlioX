@@ -1,0 +1,90 @@
+.card {
+    background-color: #131313;
+    border-radius: 34px;
+    width: 359px;
+    height: 237px;
+    overflow: hidden;
+}
+
+.header-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    grid-gap: 40px;
+    padding: 10px;
+    margin-left: -100px;
+}
+
+.card-img-top {
+    min-width: 120%;
+    min-height: 120%;
+
+}
+
+.card-img {
+    border-radius: 16px;
+}
+
+.modal-content {
+    background-color: #131313;
+    color: white;
+}
+
+.shimmer {
+    display: inline-block;
+    color: #333333;
+    -webkit-mask: linear-gradient(-60deg, #000 30%, #0005, #000 70%) right/386% 100%;
+    background-repeat: no-repeat;
+    animation: shimmer 2.5s infinite;
+    filter: blur(50px)
+}
+
+@keyframes shimmer {
+    100% {-webkit-mask-position: left}
+}
+
+#show-more {
+    background-color: #212529;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.modal-body p {
+    font-family: 'Roboto', sans-serif;
+    margin-top: 16px;
+}
+
+.navbar {
+    position: -webkit-sticky;
+    position: sticky;
+    z-index: 100;
+    top: 0;
+}
+
+#favorite {
+    width: 120px;
+    height: 120px;
+    position: absolute;
+    left: 280px;
+    top: 89.3%;
+}
+
+#favorite:hover {
+    cursor: pointer;
+}
+
+#favorite:active {
+    transform: scale(0.9);
+}
+
+#setWallpaper:disabled {
+    cursor: unset;
+    transform: none;
+}
+
+.btn-close{
+    background-color: white;
+}

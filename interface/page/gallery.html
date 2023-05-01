@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EveryNASA</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="/static/fonts/Roboto.css" rel="stylesheet">
+    <link href="/static/styles/vendors/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/styles/gallery.css" type="text/css">
+</head>
+<body style="background: #131313; color: white;">
+<nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="/">
+            <img src="/static/assets/icons/favicon.png" width="45" alt="EveryNasa">
+        </a>
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navbarNavDropdown"
+                aria-controls="navbarNavDropdown"
+                aria-expanded="false"
+                aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="/">Gallery</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/favorite">Favorite</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/settings">Settings</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/about">About</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="modal fade"
+     id="wallpaper"
+     aria-hidden="true"
+     aria-labelledby="wallpaperWindow"
+     tabindex="-1" style="color: black;">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <span class="d-inline-block text-truncate w-modal-title" style="max-width: 429px;"></span>
+                </h5>
+            </div>
+            <div class="modal-body"></div>
+            <div class="modal-footer"></div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <header class="header-row"></header>
+</div>
+<div class="preloader">
+    <lottie-player src="https://assets4.lottiefiles.com/datafiles/a3YH0ragZcwfKHS/data.json"
+                   background="transparent"
+                   speed="1"
+                   style="width: 800px; height: 800px; margin: 0 auto;"
+                   loop autoplay>
+    </lottie-player>
+</div>
+<script src="/static/scripts/vendors/jquery.min.js" type="application/javascript"></script>
+<script src="/static/scripts/vendors/bootstrap.bundle.min.js" type="application/javascript"></script>
+<script src="/static/scripts/vendors/lottie-player.js" type="application/javascript"></script>
+<script src="/static/scripts/vendors/bodymovin.min.js" type="application/javascript"></script>
+<script src="/static/scripts/gallery.js" type="application/javascript"></script>
+<script type="application/javascript">
+    startDate.setDate(startDate.getUTCDate() - 19);
+    $(document).ready(function() {
+        $.ajax({
+            url: "https://api.nasa.gov/planetary/apod",
+            type: "GET",
+            data: {
+                api_key: apiKEY,
+                start_date: `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1}-${startDate.getUTCDate()}`,
+                end_date: `${endDate.getUTCFullYear()}-${endDate.getUTCMonth() + 1}-${endDate.getUTCDate()}`,
+            },
+            success: function(data) {
+                data.reverse();
+                wallpaperLoad(data);
+            },
+        });
+    });
+</script>
+</body>
+</html>
