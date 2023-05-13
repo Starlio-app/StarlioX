@@ -68,13 +68,7 @@ function wallpaperLoad(data) {
         const title = document.querySelector(".w-modal-title");
         const button = document.querySelector(".modal-footer");
 
-        button.innerHTML = `<lottie-player id="favorite" 
-                                    src="/static/assets/lottie/lf30_rcvcAS.json" 
-                                    background="transparent" 
-                                    speed="1">
-                            </lottie-player>
-                            <button type="button" class="btn btn-primary" id="setWallpaper">Download</button>
-            `;
+        button.innerHTML = `<button type="button" class="btn btn-primary" id="setWallpaper">Download</button>`;
 
         const wallpaper_img = $(`img#${id}.card-img-top`);
         if (wallpaper_img && wallpaper_img.src === "http://localhost:4000/static/assets/placeholder.png") {
@@ -86,7 +80,6 @@ function wallpaperLoad(data) {
         }
 
         const setWallpaper = document.querySelector("#setWallpaper");
-        const favorite = document.querySelector("#favorite");
 
         title.innerHTML = `<h5 class="modal-title">${ids[card_id]['title']}</h5>`;
 
@@ -123,31 +116,31 @@ function wallpaperLoad(data) {
         if (ids[card_id]['copyright'] !== undefined) {
             return modale_window.innerHTML += `<p>© ${ids[card_id]['copyright']}</p>`;
         }
-    });
 
-    $(window).scroll(function () {
-        if (($(window).scrollTop() > $(document).height() - $(window).height() - 100)) {
-            $(".preloader").show();
-            $(window).off("scroll");
+        $(window).scroll(function () {
+            if (($(window).scrollTop() > $(document).height() - $(window).height() - 100)) {
+                $(".preloader").show();
+                $(window).off("scroll");
 
-            startDate.setDate(startDate.getDate() - 1);
+                startDate.setDate(startDate.getDate() - 1);
 
-            endDate.setDate(endDate.getDate() - 15);
-            endDate.setMonth(endDate.getMonth() - 1);
+                endDate.setDate(endDate.getDate() - 15);
+                endDate.setMonth(endDate.getMonth() - 1);
 
-            $.ajax({
-                url: "https://api.nasa.gov/planetary/apod",
-                data: {
-                    api_key: apiKEY,
-                    start_date: `${endDate.getUTCFullYear()}-${endDate.getUTCMonth() + 1}-${endDate.getUTCDate()}`,
-                    end_date: `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1}-${startDate.getUTCDate()}`,
-                },
-                success: function (data) {
-                    wallpaperLoad(data);
-                    $(window).on("scroll");
-                },
-            });
-        }
+                $.ajax({
+                    url: "https://api.nasa.gov/planetary/apod",
+                    data: {
+                        api_key: apiKEY,
+                        start_date: `${endDate.getUTCFullYear()}-${endDate.getUTCMonth() + 1}-${endDate.getUTCDate()}`,
+                        end_date: `${startDate.getUTCFullYear()}-${startDate.getUTCMonth() + 1}-${startDate.getUTCDate()}`,
+                    },
+                    success: function (data) {
+                        wallpaperLoad(data);
+                        $(window).on("scroll");
+                    },
+                });
+            }
+        });
     });
 }
 
@@ -163,7 +156,7 @@ function updateWallpaper(url) {
 }
 
 function notify(message) {
-    if (!("Notification" in window)) return;
+    if (!("Notification" in window)) return null;
 
     else if (Notification.permission === "granted") {
         new Notification(message);
@@ -174,6 +167,6 @@ function notify(message) {
             if (permission === "granted") {
                 new Notification(message);
             }
-        });
+        }).then(r => console.log(r));
     }
 }
