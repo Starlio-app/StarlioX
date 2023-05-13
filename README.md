@@ -1,21 +1,27 @@
 <p align="center"><img src="interface/static/assets/icons/favicon.png" alt="EveryNASA"></p>
 <h2 align="center"> Amazing wallpaper straight from space! </h2>
 
-| Platform | Status | Get in on                                       | Branche                 | 
-|----------|--------|-------------------------------------------------|-------------------------|
-| Windows  | 🟢     | [Github][windows-download]                      | [main][windows-branche] |
-| Linux    | 🟡     | [Github][linux-download]                        | N/A                     |
-| Android  | 🟢     | [Google Play][google-play] / [RuStore][rustore] | N/A                     |
-| MacOS    | 🔴     | N/A                                             | N/A                     |
-| iOS      | 🔴     | N/A                                             | N/A                     |
+> **Note**
+> This app is not official from NASA
+
+> **Warning**
+> This branch with unstable changes, some features may be removed or not work properly
+
+| Platform | Status | Get in on                                        | Branche                 | 
+|----------|--------|--------------------------------------------------|-------------------------|
+| Windows  | 🟢     | [Github][windows-download]                       | [main][windows-branche] |
+| Linux    | 🟡     | [Github][linux-download]                         | N/A                     |
+| Android  | 🟢     | [Google Play][google-play] / [RuStore][rustore]* | N/A                     |
+| MacOS    | 🔴     | N/A                                              | N/A                     |
+| iOS      | 🔴     | N/A                                              | N/A                     |
 
 <details>
-<summary>Deciphering emoji</summary>
+<summary>Explanation of designations</summary>
 
 #### 🟢 — Development for the platform is supported to date
 #### 🟡 — Development was earlier, but was discontinued
 #### 🔴 — Not available for this platform
-
+#### * — Loaded an old version, to get the current version it is better to install from [Google Play][google-play]
 </details>
 
 ---
@@ -28,6 +34,7 @@
 [google-play]: https://play.google.com/store/apps/details?id=ru.murzify.everynasa
 [rustore]: https://apps.rustore.ru/app/ru.murzify.everynasa
 
+### License. The project is under the GPLv3 license
 
 ```
 If the program does terminal interaction, make it output a short
