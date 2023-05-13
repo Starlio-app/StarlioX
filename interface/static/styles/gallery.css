@@ -64,22 +64,6 @@
     top: 0;
 }
 
-#favorite {
-    width: 120px;
-    height: 120px;
-    position: absolute;
-    left: 280px;
-    top: 89.3%;
-}
-
-#favorite:hover {
-    cursor: pointer;
-}
-
-#favorite:active {
-    transform: scale(0.9);
-}
-
 #setWallpaper:disabled {
     cursor: unset;
     transform: none;
