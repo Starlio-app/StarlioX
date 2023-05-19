@@ -1,16 +1,10 @@
-<p align="center"><img src="web/static/image/icons/banner.png" alt="EveryNasa banner" title="EveryNasa"></p>
+<p align="center"><img src="web/static/image/icons/banner.png" alt="Starlio banner" title="Starlio"></p>
 
 The program takes a picture from the NASA [website](https://apod.nasa.gov/apod) every day
 and sets it as a background for your workspace.
 
 > **Note**
 > This app is not official from NASA
-
-### What EveryNasa can do?
-- Installing wallpapers on your desktop
-- Installing wallpapers on your desktop every day
-- There is information about each photo
-- You can add any photo to your favorites
 
 ### Contents
 - [How to build](#how-to-build)
@@ -19,75 +13,14 @@ and sets it as a background for your workspace.
 
 ---
 
-| Platform         | Status      | Latest version | Get in on                                                                                                                                       | Branche                                                                       |
-|------------------|-------------|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------|
-| Windows          | Support     | 2.3.2          | [Github](https://github.com/Redume/EveryNasa/releases/tag/v2.3.2)                                                                               | [main](https://github.com/Redume/EveryNasa)                                   |
-| Linux            | Unsupport   | 1.6            | [Github](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa)                                                                  |                                                                               |
-| Android          | Support     | 1.8.1          | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa) / [RuStore](https://apps.rustore.ru/app/ru.murzify.everynasa) |                                                                               |
-| MacOS            | Unavailable |                |                                                                                                                                                 |                                                                               |
-| iOS              | Unavailable |                |                                                                                                                                                 |                                                                               |
-| Wallpaper Engine | Support     |       1.0      | [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2884180886)                                                             | [wallpaper-engine](https://github.com/Redume/EveryNasa/tree/wallpaper-engine) |
-
-
-### Solution or answers to possible problems
-Any bugs / problems that are not covered by these questions, please open an [issue](https://github.com/Redume/EveryNasa/issues/new?assignees=&labels=bug&template=bug_report.md&title=Bug)
-
-<details>
-<summary>Windows</summary>
-    <li>To make all functions work correctly, install the program anywhere except Program Files(x86) / Program Files</li>
-</details>
-
-
-<details>
-<summary>Linux</summary>
-
-- If you have a mistake with `ayatana-appindicator3-0.1`
-
-    <details>
-        <summary><b>Debian / Ubuntu / Mint</b></summary>
-        <details>
-            <summary><b>KDE Plasma</b></summary>
-
-  ```shell
-  $ sudo apt install gir1.2-appindicator3-0.1
-  ```
-
-  </details>
-  <details>
-  <summary><b>GNOME</b></summary>
-
-    - Install the package
-  ```shell
-  $ sudo apt install gnome-shell-extension-appindicator
-  ```
-    - Open `Tweaks`
-    - Go to `Extensions`
-    - Enable `Kstatusnotifieritem/appindicator support`
-</details>
-</details>
-</details>
-
-### How to build
-<details>
-<summary></summary>
-
-- Install [GoLang](https://golang.org/dl/). Recommended version: 1.19.1
-
-
-- First make a build. If you want to create a build without a console window, then remove `-ldflags "-H windowsgui"` from the command
-
-```shell
-go build -ldflags "-s -H windowsgui"
-```
-
-- Create a build of the installation package
-
-```shell
-go-msi make -msi EveryNasa.msi --version <version> -s wix
-```
-
-- Done
-</details>
+| Platform         | Status      | Latest version | Get in on                                                                                                                                       | Branch                                                                       |
+|------------------|-------------|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
+| Windows          | Support     | 2.4            | [Github](https://github.com/Redume/EveryNasa/releases/tag/v2.3.2)                                                                               | [main](https://github.com/Redume/Starlio)                                    |
+| Linux            | Unsupport   | 1.6            | [Github](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa)                                                                  |                                                                              |
+| Android          | Support     | 1.8.1          | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa) / [RuStore](https://apps.rustore.ru/app/ru.murzify.everynasa) |                                                                              |
+| MacOS            | Unavailable |                |                                                                                                                                                 |                                                                              |
+| iOS              | Unavailable |                |                                                                                                                                                 |                                                                              |
+| Wallpaper Engine | Support     | 1.0            | [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2884180886)                                                             | [wallpaper-engine](https://github.com/Redume/Starlio/tree/wallpaper-engine)  |
 
 ---
 
@@ -98,7 +31,8 @@ This project is licensed under the GPLv3 - see the [LICENSE](LICENSE) file for d
   If the program does terminal interaction, make it output a short
 notice like this when it starts in an interactive mode:
 
-    EveryNasa Copyright (C) 2023-2023 Redume
+    EveryNasa Copyright (C) 2022-2023 Redume
+    Starlio Copyright (C) 2023 Redume
     This program comes with ABSOLUTELY NO WARRANTY; for details type `show w'.
     This is free software, and you are welcome to redistribute it
     under certain conditions; type `show c' for details.
