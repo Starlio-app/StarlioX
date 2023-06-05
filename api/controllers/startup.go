@@ -6,7 +6,7 @@ import (
 	"os/user"
 	"strings"
 
-	"github.com/Redume/EveryNasa/utils"
+	"github.com/Redume/Starlio/utils"
 )
 
 var Startup = func(c *fiber.Ctx) error {
@@ -39,9 +39,9 @@ var SetStartup = func(c *fiber.Ctx) error {
 		utils.Logger(err.Error())
 	}
 
-	dir = strings.Replace(dir, "\\", "\\\\", -1) + "\\EveryNasa.exe"
+	dir = strings.Replace(dir, "\\", "\\\\", -1) + "\\Starlio.exe"
 
-	err = utils.CreateLnk(dir, strings.Replace(u.HomeDir, "\\", "\\\\", -1)+"\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\EveryNasa.lnk")
+	err = utils.CreateLnk(dir, strings.Replace(u.HomeDir, "\\", "\\\\", -1)+"\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Starlio.lnk")
 	if err != nil {
 		utils.Logger(err.Error())
 	}
@@ -56,7 +56,7 @@ var RemoveStartup = func(c *fiber.Ctx) error {
 		utils.Logger(err.Error())
 	}
 
-	err = os.Remove(strings.Replace(u.HomeDir, "\\", "\\\\", -1) + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\EveryNasa.lnk")
+	err = os.Remove(strings.Replace(u.HomeDir, "\\", "\\\\", -1) + "\\AppData\\Roaming\\Microsoft\\Windows\\Start Menu\\Programs\\Startup\\Starlio.lnk")
 	if err != nil {
 		utils.Logger(err.Error())
 	}

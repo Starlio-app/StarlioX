@@ -5,7 +5,7 @@ import (
 	"os/user"
 	"strings"
 
-	"github.com/Redume/EveryNasa/utils"
+	"github.com/Redume/Starlio/utils"
 	"github.com/gofiber/fiber/v2"
 )
 
@@ -20,9 +20,9 @@ var CreateLabel = func(c *fiber.Ctx) error {
 		utils.Logger(err.Error())
 	}
 
-	dir = strings.Replace(dir, "\\", "\\\\", -1) + "\\EveryNasa.exe"
+	dir = strings.Replace(dir, "\\", "\\\\", -1) + "\\Starlio.exe"
 
-	err = utils.CreateLnk(dir, strings.Replace(u.HomeDir, "\\", "\\\\", -1)+"\\Desktop\\EveryNasa.lnk")
+	err = utils.CreateLnk(dir, strings.Replace(u.HomeDir, "\\", "\\\\", -1)+"\\Desktop\\Starlio.lnk")
 	if err != nil {
 		utils.Logger(err.Error())
 	}

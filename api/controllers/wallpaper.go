@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"github.com/Redume/EveryNasa/utils"
+	"github.com/Redume/Starlio/utils"
 	"github.com/gofiber/fiber/v2"
 	"github.com/reujab/wallpaper"
 )

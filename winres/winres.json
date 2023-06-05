@@ -10,8 +10,8 @@
     "#1": {
       "0409": {
         "identity": {
-          "name": "EveryNasa",
-          "version": "2.3.2"
+          "name": "Starlio",
+          "version": "2.3.3"
         },
         "description": "Automatic space wallpaper from Nasa",
         "minimum-os": "win10",
@@ -44,12 +44,12 @@
             "CompanyName": "Redume",
             "FileDescription": "",
             "FileVersion": "3.2.1",
-            "InternalName": "EveryNasa",
+            "InternalName": "Starlio",
             "LegalCopyright": "Redume",
             "LegalTrademarks": "",
-            "OriginalFilename": "EveryNasa.exe",
+            "OriginalFilename": "Starlio.exe",
             "PrivateBuild": "",
-            "ProductName": "EveryNasa",
+            "ProductName": "Starlio",
             "ProductVersion": "2.3.2",
             "SpecialBuild": ""
           }

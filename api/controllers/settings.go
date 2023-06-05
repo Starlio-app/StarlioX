@@ -2,13 +2,13 @@ package controllers
 
 import (
 	"database/sql"
-	"github.com/Redume/EveryNasa/utils"
+	"github.com/Redume/Starlio/utils"
 	"github.com/gofiber/fiber/v2"
 	_ "github.com/mattn/go-sqlite3"
 )
 
 var SettingsGet = func(c *fiber.Ctx) error {
-	db, err := sql.Open("sqlite3", "EveryNasa.db")
+	db, err := sql.Open("sqlite3", "Starlio.db")
 	if err != nil {
 		utils.Logger(err.Error())
 	}
@@ -47,7 +47,7 @@ var SettingsGet = func(c *fiber.Ctx) error {
 }
 
 var SettingsUpdate = func(c *fiber.Ctx) error {
-	db, err := sql.Open("sqlite3", "EveryNasa.db")
+	db, err := sql.Open("sqlite3", "Starlio.db")
 	if err != nil {
 		utils.Logger(err.Error())
 	}

@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"database/sql"
-	"github.com/Redume/EveryNasa/utils"
+	"github.com/Redume/Starlio/utils"
 	"github.com/gofiber/fiber/v2"
 )
 

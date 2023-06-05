@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/Redume/EveryNasa/api/controllers"
-	"github.com/Redume/EveryNasa/utils"
+	"github.com/Redume/Starlio/api/controllers"
+	"github.com/Redume/Starlio/utils"
 	"github.com/getlantern/systray"
 	"github.com/gofiber/fiber/v2"
 	"github.com/gofiber/fiber/v2/middleware/cors"

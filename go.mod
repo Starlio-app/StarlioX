@@ -1,8 +1,9 @@
-module github.com/Redume/EveryNasa
+module github.com/Redume/Starlio
 
 go 1.19
 
 require (
+	github.com/Redume/Starlio v0.0.0-20230519150000-f05fb8c9d31e
 	github.com/getlantern/systray v1.2.1
 	github.com/go-ole/go-ole v1.2.6
 	github.com/gofiber/fiber/v2 v2.42.0

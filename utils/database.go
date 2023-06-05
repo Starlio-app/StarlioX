@@ -6,7 +6,7 @@ import (
 )
 
 func Database() {
-	db, err := sql.Open("sqlite3", "EveryNasa.db")
+	db, err := sql.Open("sqlite3", "Starlio.db")
 	if err != nil {
 		Logger(err.Error())
 	}
@@ -55,7 +55,7 @@ func Database() {
 }
 
 func GetDatabase() *sql.DB {
-	db, err := sql.Open("sqlite3", "EveryNasa.db")
+	db, err := sql.Open("sqlite3", "Starlio.db")
 	if err != nil {
 		Logger(err.Error())
 	}

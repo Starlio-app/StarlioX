@@ -11,8 +11,8 @@ import (
 
 func Tray() {
 	systray.SetIcon(GetIcon("web/static/image/icons/icon.ico"))
-	systray.SetTitle("EveryNasa")
-	systray.SetTooltip("EveryNasa")
+	systray.SetTitle("Starlio")
+	systray.SetTooltip("Starlio")
 	ui := systray.AddMenuItem("Open UI", "Open UI")
 	exit := systray.AddMenuItem("Quit", "Quit the whole app")
 
@@ -30,7 +30,7 @@ func Tray() {
 }
 
 func Quit() {
-	err := KillProcess("EveryNasa.exe")
+	err := KillProcess("Starlio.exe")
 	if err != nil {
 		Logger(err.Error())
 	}
