@@ -4,9 +4,6 @@
 > **Note**
 > This app is not official from NASA
 
-> **Warning**
-> This branch with unstable changes, some features may be removed or not work properly
-
 | Platform | Status | Get in on                                        | Branche                 | 
 |----------|--------|--------------------------------------------------|-------------------------|
 | Windows  | 🟢     | [Github][windows-download]                       | [main][windows-branche] |
@@ -31,7 +28,7 @@
 
 [linux-download]: https://github.com/Redume/Starlio/releases/download/v1.6/Starlio
 
-[google-play]: https://play.google.com/store/apps/details?id=ru.murzify.Starlio
+[google-play]: https://play.google.com/store/apps/details?id=ru.murzify.everynasa
 [rustore]: https://apps.rustore.ru/app/ru.murzify.Starlio
 
 ### License. The project is under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) license.
