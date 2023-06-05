@@ -1,34 +1,43 @@
-<p align="center"><img src="web/static/image/icons/banner.png" alt="Starlio banner" title="Starlio"></p>
-
-The program takes a picture from the NASA [website](https://apod.nasa.gov/apod) every day
-and sets it as a background for your workspace.
+<p align="center"><img src="web/static/image/icons/favicon.png" alt="Starlio"></p>
+<h2 align="center"> Amazing wallpaper straight from space! </h2>
 
 > **Note**
 > This app is not official from NASA
 
-### Contents
-- [How to build](#how-to-build)
-- [Solution or answers to possible problems](#solution-or-answers-to-possible-problems)
-- [License](#license)
+> **Warning**
+> This branch with unstable changes, some features may be removed or not work properly
+
+| Platform | Status | Get in on                                        | Branche                 | 
+|----------|--------|--------------------------------------------------|-------------------------|
+| Windows  | 🟢     | [Github][windows-download]                       | [main][windows-branche] |
+| Linux    | 🟡     | [Github][linux-download]                         | N/A                     |
+| Android  | 🟢     | [Google Play][google-play] / [RuStore][rustore]* | N/A                     |
+| MacOS    | 🔴     | N/A                                              | N/A                     |
+| iOS      | 🔴     | N/A                                              | N/A                     |
+
+<details>
+<summary>Explanation of designations</summary>
+
+#### 🟢 — Development for the platform is supported to date
+#### 🟡 — Development was earlier, but was discontinued
+#### 🔴 — Not available for this platform
+#### * — Loaded an old version, to get the current version it is better to install from [Google Play][google-play]
+</details>
 
 ---
 
-| Platform         | Status      | Latest version | Get in on                                                                                                                                       | Branch                                                                       |
-|------------------|-------------|----------------|-------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------|
-| Windows          | Support     | 2.4            | [Github](https://github.com/Redume/EveryNasa/releases/tag/v2.3.2)                                                                               | [main](https://github.com/Redume/Starlio)                                    |
-| Linux            | Unsupport   | 1.6            | [Github](https://github.com/Redume/EveryNasa/releases/download/v1.6/EveryNasa)                                                                  |                                                                              |
-| Android          | Support     | 1.8.1          | [Google Play](https://play.google.com/store/apps/details?id=ru.murzify.everynasa) / [RuStore](https://apps.rustore.ru/app/ru.murzify.everynasa) |                                                                              |
-| MacOS            | Unavailable |                |                                                                                                                                                 |                                                                              |
-| iOS              | Unavailable |                |                                                                                                                                                 |                                                                              |
-| Wallpaper Engine | Support     | 1.0            | [Steam Workshop](https://steamcommunity.com/sharedfiles/filedetails/?id=2884180886)                                                             | [wallpaper-engine](https://github.com/Redume/Starlio/tree/wallpaper-engine)  |
+[windows-download]: https://github.com/Redume/Starlio/releases/latest
+[windows-branche]: https://github.com/Redume/Starlio/
 
----
+[linux-download]: https://github.com/Redume/Starlio/releases/download/v1.6/Starlio
 
-### License
-This project is licensed under the GPLv3 - see the [LICENSE](LICENSE) file for details.
+[google-play]: https://play.google.com/store/apps/details?id=ru.murzify.Starlio
+[rustore]: https://apps.rustore.ru/app/ru.murzify.Starlio
+
+### License. The project is under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) license.
 
 ```
-    EveryNasa Copyright (C) 2022-2023 Redume
+    Starlio Copyright (C) 2022-2023 Redume
     Starlio Copyright (C) 2023 Redume
 
     This program is free software: you can redistribute it and/or modify
