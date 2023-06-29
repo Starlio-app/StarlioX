@@ -29,12 +29,12 @@
 [linux-download]: https://github.com/Redume/Starlio/releases/download/v1.6/Starlio
 
 [google-play]: https://play.google.com/store/apps/details?id=ru.murzify.everynasa
-[rustore]: https://apps.rustore.ru/app/ru.murzify.Starlio
+[rustore]: https://apps.rustore.ru/app/ru.murzify.everynasa
 
 ### License. The project is under the [GPLv3](https://www.gnu.org/licenses/gpl-3.0.html) license.
 
 ```
-    Starlio Copyright (C) 2022-2023 Redume
+    EveryNasa Copyright (C) 2022-2023 Redume
     Starlio Copyright (C) 2023 Redume
 
     This program is free software: you can redistribute it and/or modify
