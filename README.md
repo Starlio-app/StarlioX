@@ -1,16 +1,20 @@
 <p align="center"><img src="web/static/image/icons/favicon.png" alt="Starlio"></p>
 <h2 align="center"> Amazing wallpaper straight from space! </h2>
 
+**<p align="center">This version of the project is no longer unmaintained. See another: https://github.com/Starlio-app/Starlio</p>**
+
+---
+    
 > **Note**
 > This app is not official from NASA
 
-| Platform | Status | Get in on                                        | Branche                 | 
-|----------|--------|--------------------------------------------------|-------------------------|
-| Windows  | 🟢     | [Github][windows-download]                       | [main][windows-branche] |
-| Linux    | 🟡     | [Github][linux-download]                         | N/A                     |
-| Android  | 🟢     | [Google Play][google-play] / [RuStore][rustore]* | N/A                     |
-| MacOS    | 🔴     | N/A                                              | N/A                     |
-| iOS      | 🔴     | N/A                                              | N/A                     |
+| Platform | Status | Get in on                                        | 
+|----------|--------|--------------------------------------------------|
+| Windows  | 🟡     | [Github][windows-download]                       |
+| Linux    | 🟡     | [Github][linux-download]                         |
+| Android  | 🟢     | [Google Play][google-play] / [RuStore][rustore]* |
+| MacOS    | 🔴     | N/A                                              |
+| iOS      | 🔴     | N/A                                              |
 
 <details>
 <summary>Explanation of designations</summary>
@@ -23,10 +27,8 @@
 
 ---
 
-[windows-download]: https://github.com/Redume/Starlio/releases/latest
-[windows-branche]: https://github.com/Redume/Starlio/
-
-[linux-download]: https://github.com/Redume/Starlio/releases/download/v1.6/Starlio
+[windows-download]: https://github.com/Starlio-app/StarlioX/releases/latest
+[linux-download]: https://github.com/Starlio-app/StarlioX/releases/download/v1.6/Starlio
 
 [google-play]: https://play.google.com/store/apps/details?id=ru.murzify.everynasa
 [rustore]: https://apps.rustore.ru/app/ru.murzify.everynasa
@@ -35,7 +37,9 @@
 
 ```
     EveryNasa Copyright (C) 2022-2023 Redume
+    StarlioX Copyright (C) 2023 Redume
     Starlio Copyright (C) 2023 Redume
+
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
