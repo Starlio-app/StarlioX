@@ -1,7 +1,7 @@
 <p align="center"><img src="web/static/image/icons/favicon.png" alt="Starlio"></p>
 <h2 align="center"> Amazing wallpaper straight from space! </h2>
 
-**<p align="center">This version of the project is no longer unmaintained. See another: https://github.com/Starlio-app/Starlio</p>**
+**<p align="center">This version of the project is no longer maintained. See another: https://github.com/Starlio-app/Starlio</p>**
 
 ---
     
